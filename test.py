@@ -30,7 +30,6 @@ for line in dataList:
         gfp_index = i + 9
         break
 
-print(dataList[gfp_index])
 i = 0
 for line in dataList:
     i = i + 1
@@ -39,7 +38,6 @@ for line in dataList:
         gfp_indexend = i - 3
         break
 
-print(dataList[gfp_index])
 i = 0
 for line in dataList:
     i = i + 1
@@ -47,11 +45,22 @@ for line in dataList:
         tryp_indexend = i - 3
         break
 
-print(dataList[tryp_indexend])
 i = 0
 time = []
 intensity = []
-for l in dataList[gfp_index:gfp_indexend]:
+while True:
+    print("GFPなら1をTryptophanなら2を入力してください")
+    flu = input(">>")
+    if flu == "1":
+        start = gfp_index
+        end = gfp_indexend
+        break
+    if flu == "2":
+        start = tryp_index
+        end = tryp_indexend
+        break
+        
+for l in dataList[start:end]:
     line = l.split()
     if len(line) < 1:
         break
