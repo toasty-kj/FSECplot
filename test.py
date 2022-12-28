@@ -37,7 +37,6 @@ for line in dataList:
         tryp_index = i + 9
         gfp_indexend = i - 3
         break
-
 i = 0
 for line in dataList:
     i = i + 1
@@ -59,7 +58,6 @@ while True:
         start = tryp_index
         end = tryp_indexend
         break
-        
 for l in dataList[start:end]:
     line = l.split()
     if len(line) < 1:
