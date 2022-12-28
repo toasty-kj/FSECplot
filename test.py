@@ -1,7 +1,8 @@
-import re
-from tkinter import filedialog
-
 from matplotlib import pyplot
+
+import GetIndices
+import ReadFile
+import StartEnd
 
 '''
 まず複数のファイルを重ね合わせるかどうか聞く
@@ -13,51 +14,27 @@ matplotlibによって作図する
 '''
 print("This is plotting program for FSEC")
 
-typ = [("textfile", "*.txt"), ("csvfile", "*.csv"), ("Excelfile", "*.xlsx")]
-files = filedialog.askopenfilename(filetypes=typ)
-print(files)
-# 複数のファイルの時はタプルなのでfor文とかでまわしてインデックスのついてリストを得る？
-# 作図の時も同様
+# ファイルの読み込みとListへの格納
+readFile = ReadFile.ReadFile
+dataList = readFile.readFile()
+# 目的の列のインデックスを得る
+getIndex = GetIndices.GetIndices
 
-f = open(files, "r")
-
-dataList = f.readlines()
 # indexをしらべる
-i = 0
-for line in dataList:
-    i = i + 1
-    if re.search("LC Chromatogram\\(Detector A-Ch1\\)", line):
-        gfp_index = i + 9
-        break
+gfpStart = getIndex.getGFPindex(dataList)
+gfpEnd = getIndex.getGFPindexend(dataList)
+trypStart = getIndex.getTrypindex(gfpEnd)
+trypEnd = getIndex.getTrypindex(dataList)
 
-i = 0
-for line in dataList:
-    i = i + 1
-    if re.search("LC Chromatogram\\(Detector A-Ch2\\)", line):
-        tryp_index = i + 9
-        gfp_indexend = i - 3
-        break
-i = 0
-for line in dataList:
-    i = i + 1
-    if re.search("Pump A Pressure", line):
-        tryp_indexend = i - 3
-        break
+startEnd = StartEnd.StartEnd
+sel = startEnd.getSel()
+start = startEnd.getStart(sel, gfpStart, trypStart)
+end = startEnd.getEnd(sel, gfpEnd, trypEnd)
 
 i = 0
 time = []
 intensity = []
-while True:
-    print("GFPなら1をTryptophanなら2を入力してください")
-    flu = input(">>")
-    if flu == "1":
-        start = gfp_index
-        end = gfp_indexend
-        break
-    if flu == "2":
-        start = tryp_index
-        end = tryp_indexend
-        break
+
 for l in dataList[start:end]:
     line = l.split()
     if len(line) < 1:
@@ -76,4 +53,3 @@ pyplot.ylabel("GFP fluorescence intensity (A.U.)")
 pyplot.plot(time, intensity)
 
 pyplot.show()
-f.close()
