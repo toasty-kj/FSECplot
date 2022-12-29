@@ -33,12 +33,3 @@ class GetIndices:
                 tryp_indexend = i - 3
                 break
         return tryp_indexend
-
-    def getTrypindex2(self, dataList):
-        i = 0
-        for line in dataList:
-            i = i + 1
-            if re.search("LC Chromatogram\\(Detector A-Ch2\\)", line):
-                tryp_index = i + 9
-                break
-        return tryp_index
