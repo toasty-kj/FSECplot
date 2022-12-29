@@ -23,22 +23,15 @@ multipleData = rf.readfiles()
 # 目的の列のインデックスを得る
 getIndex = GetIndices.GetIndices()
 numlist = getIndex.getNumList(multipleData)
-# gfpStart = getIndex.getGFPindex(dataList)
-# gfpEnd = getIndex.getGFPindexend(dataList)
-# trypStart = getIndex.getTrypindex(gfpEnd)
-# trypEnd = getIndex.getTrypindexend(dataList)
 
 # time, intensity, start,endを変数にもつクラスを作る
 # selとmultipleDataを引数にとって
 startEnd = StartEnd.StartEnd()
 sel = startEnd.getSel()
-# sel と目的のデータリストさえあればよい
 convert = ConvertList.ConvertList()
-list = convert.convert_list(sel, multipleData, numlist)
-
-# とりあえず10個くらいのdataクラスをリストに入れてnumlistの文だけまわす
+lists = convert.convert_list(sel, multipleData, numlist)
 
 # print(time[-1])
 # matplotlibを用いた作図
 fsec = FSECplot.FSECplot()
-fsec.plotfsec(list)
+fsec.plotfsec(lists)

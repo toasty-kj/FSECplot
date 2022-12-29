@@ -8,6 +8,7 @@ class Data:
         self.start = startEnd.getStart(sel, data_list)
         self.end = startEnd.getEnd(sel, data_list)
         self.data_list = data_list
+        self.name = data_list[3]
 
     def get_time(self, data):
         dataList = data.data_list

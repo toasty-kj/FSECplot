@@ -5,7 +5,7 @@ class FSECplot:
     def plotfsec(self, list):
         print("Input the title")
         print("図のタイトルを記入してください")
-        title = input(">>")
+        title = input("ENTER to skip >>")
 
         pyplot.title(title)
         pyplot.xlabel("Ret.time(min)")
@@ -14,6 +14,10 @@ class FSECplot:
         for i in range(len(list)):
             time = list[i].get_time(list[i])
             intensity = list[i].get_intensity(list[i])
-            pyplot.plot(time, intensity)
+            print("図に表示する以下のファイルの名前を教えてください。")
+            print("what is the legend of ", list[i].name)
+            legend = input("ENTER to skip >>")
+            pyplot.plot(time, intensity, label=legend)
 
+        pyplot.legend()
         pyplot.show()
