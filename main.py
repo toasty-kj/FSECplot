@@ -1,3 +1,4 @@
+import ConvertList
 import FSECplot
 import GetIndices
 import ReadFile
@@ -12,37 +13,32 @@ import StartEnd
 matplotlibによって作図する
 '''
 print("This is plotting program for FSEC")
-
+# 同時に読み込めるファイルの数を10とかに設定しといて
+# 帰ってきたタプルの数でループを回す数をきめてリストに読み込むファイルの名前を入れておく
 # ファイルの読み込みとListへの格納
 rf = ReadFile.ReadFile()
-dataList = rf.readfile()
+# dataList = rf.readfile()
+multipleData = rf.readfiles()
 
 # 目的の列のインデックスを得る
 getIndex = GetIndices.GetIndices()
+numlist = getIndex.getNumList(multipleData)
+# gfpStart = getIndex.getGFPindex(dataList)
+# gfpEnd = getIndex.getGFPindexend(dataList)
+# trypStart = getIndex.getTrypindex(gfpEnd)
+# trypEnd = getIndex.getTrypindexend(dataList)
 
-# indexをしらべる
-gfpStart = getIndex.getGFPindex(dataList)
-gfpEnd = getIndex.getGFPindexend(dataList)
-trypStart = getIndex.getTrypindex(gfpEnd)
-trypEnd = getIndex.getTrypindexend(dataList)
-
+# time, intensity, start,endを変数にもつクラスを作る
+# selとmultipleDataを引数にとって
 startEnd = StartEnd.StartEnd()
 sel = startEnd.getSel()
-start = startEnd.getStart(sel, gfpStart, trypStart)
-end = startEnd.getEnd(sel, gfpEnd, trypEnd)
+# sel と目的のデータリストさえあればよい
+convert = ConvertList.ConvertList()
+list = convert.convert_list(sel, multipleData, numlist)
 
-i = 0
-time = []
-intensity = []
+# とりあえず10個くらいのdataクラスをリストに入れてnumlistの文だけまわす
 
-for l in dataList[start:end]:
-    line = l.split()
-    if len(line) < 1:
-        break
-    time.append(float(line[0]))
-    intensity.append(float(line[1]))
-
-print(time[-1])
+# print(time[-1])
 # matplotlibを用いた作図
 fsec = FSECplot.FSECplot()
-fsec.plotfsec(time, intensity)
+fsec.plotfsec(list)

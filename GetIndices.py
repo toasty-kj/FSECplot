@@ -16,7 +16,6 @@ class GetIndices:
         for line in dataList:
             i = i + 1
             if re.search("LC Chromatogram\\(Detector A-Ch2\\)", line):
-                tryp_index = i + 9
                 gfp_indexend = i - 3
                 break
         return gfp_indexend
@@ -33,3 +32,14 @@ class GetIndices:
                 tryp_indexend = i - 3
                 break
         return tryp_indexend
+
+    def getNumList(self, multipledata):
+        i = 0
+        for i in range(len(multipledata)):
+            if i == (len(multipledata) - 1):
+                numlist = i
+                break
+            if len(multipledata[i]) == 0:
+                numlist = i - 1
+                break
+        return numlist
