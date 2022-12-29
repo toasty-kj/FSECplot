@@ -1,4 +1,7 @@
 class StartEnd:
+    def __init__(self):
+        self.flu = None
+
     def getSel(self):
         while True:
             print("GFPなら1をTryptophanなら2を入力してください")

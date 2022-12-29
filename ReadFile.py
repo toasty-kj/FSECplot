@@ -1,5 +1,9 @@
+from tkinter import filedialog
+
+
 class ReadFile:
-    def readFile(self):
+
+    def readfile(self):
         typ = [("textfile", "*.txt"), ("csvfile", "*.csv"), ("Excelfile", "*.xlsx")]
         files = filedialog.askopenfilename(filetypes=typ)
         print(files)

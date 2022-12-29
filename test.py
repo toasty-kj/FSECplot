@@ -15,18 +15,19 @@ matplotlibによって作図する
 print("This is plotting program for FSEC")
 
 # ファイルの読み込みとListへの格納
-readFile = ReadFile.ReadFile
-dataList = readFile.readFile()
+rf = ReadFile.ReadFile()
+dataList = rf.readfile()
+
 # 目的の列のインデックスを得る
-getIndex = GetIndices.GetIndices
+getIndex = GetIndices.GetIndices()
 
 # indexをしらべる
 gfpStart = getIndex.getGFPindex(dataList)
 gfpEnd = getIndex.getGFPindexend(dataList)
 trypStart = getIndex.getTrypindex(gfpEnd)
-trypEnd = getIndex.getTrypindex(dataList)
+trypEnd = getIndex.getTrypindexend(dataList)
 
-startEnd = StartEnd.StartEnd
+startEnd = StartEnd.StartEnd()
 sel = startEnd.getSel()
 start = startEnd.getStart(sel, gfpStart, trypStart)
 end = startEnd.getEnd(sel, gfpEnd, trypEnd)
