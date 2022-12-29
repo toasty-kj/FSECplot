@@ -1,5 +1,4 @@
-from matplotlib import pyplot
-
+import FSECplot
 import GetIndices
 import ReadFile
 import StartEnd
@@ -44,13 +43,6 @@ for l in dataList[start:end]:
     intensity.append(float(line[1]))
 
 print(time[-1])
-print("Input the title")
-print("図のタイトルを記入してください")
-title = input(">>")
-
-pyplot.title(title)
-pyplot.xlabel("Ret.time(min)")
-pyplot.ylabel("GFP fluorescence intensity (A.U.)")
-pyplot.plot(time, intensity)
-
-pyplot.show()
+# matplotlibを用いた作図
+fsec = FSECplot.FSECplot()
+fsec.plotfsec(time, intensity)
