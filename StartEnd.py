@@ -7,6 +7,7 @@ class StartEnd:
 
     def getSel(self):
         while True:
+            print("Input 1 for GFP, 2 for Tryptophan")
             print("GFPなら1をTryptophanなら2を入力してください")
             flu = input(">>")
             if flu == "1":

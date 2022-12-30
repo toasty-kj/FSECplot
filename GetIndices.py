@@ -36,7 +36,7 @@ class GetIndices:
     def getNumList(self, multipledata):
         i = 0
         for i in range(len(multipledata)):
-            if i == (len(multipledata) - 1):
+            if i == (len(multipledata)):
                 numlist = i
                 break
             if len(multipledata[i]) == 0:

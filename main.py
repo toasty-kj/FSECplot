@@ -34,4 +34,4 @@ lists = convert.convert_list(sel, multipleData, numlist)
 # print(time[-1])
 # matplotlibを用いた作図
 fsec = FSECplot.FSECplot()
-fsec.plotfsec(lists)
+fsec.plotfsec(lists, sel)

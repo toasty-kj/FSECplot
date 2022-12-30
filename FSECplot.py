@@ -2,14 +2,18 @@ from matplotlib import pyplot
 
 
 class FSECplot:
-    def plotfsec(self, list):
+    def plotfsec(self, list, sel):
         print("Input the title")
         print("図のタイトルを記入してください")
         title = input("ENTER to skip >>")
 
         pyplot.title(title)
-        pyplot.xlabel("Ret.time(min)")
-        pyplot.ylabel("GFP fluorescence intensity (A.U.)")
+        if sel == "1":
+            label = "GFP fluorescence intensity (A.U.)"
+        else:
+            label = "Tryptophan fluorescence intensity (A.U.)"
+        pyplot.xlabel("Ret.time(min)", {"fontsize": 15})
+        pyplot.ylabel(label, {"fontsize": 12})
         i = 0
         for i in range(len(list)):
             time = list[i].get_time(list[i])
@@ -20,4 +24,7 @@ class FSECplot:
             pyplot.plot(time, intensity, label=legend)
 
         pyplot.legend()
+        print("Plotting successful!! "
+              "click save to save the image")
+        print("作図に成功しました。画像を保存する場合はウィンドウ内のセーブボタンをクリックしてください")
         pyplot.show()
