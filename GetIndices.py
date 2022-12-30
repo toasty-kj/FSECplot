@@ -42,4 +42,6 @@ class GetIndices:
             if len(multipledata[i]) == 0:
                 numlist = i - 1
                 break
+            else:
+                numlist = i - 1
         return numlist
