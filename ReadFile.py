@@ -7,8 +7,6 @@ class ReadFile:
         typ = [("textfile", "*.txt"), ("csvfile", "*.csv"), ("Excelfile", "*.xlsx")]
         file = filedialog.askopenfilename(filetypes=typ)
         print(file)
-        # 複数のファイルの時はタプルなのでfor文とかでまわしてインデックスのついてリストを得る？
-        # 作図の時も同様
         f = open(file, "r")
         dataList = f.readlines()
         f.close()

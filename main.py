@@ -12,8 +12,6 @@ import StartEnd
 matplotlibによって作図する
 '''
 print("This is plotting program for FSEC")
-# 同時に読み込めるファイルの数を10とかに設定しといて
-# 帰ってきたタプルの数でループを回す数をきめてリストに読み込むファイルの名前を入れておく
 # ファイルの読み込みとListへの格納
 rf = ReadFile.ReadFile()
 # dataList = rf.readfile()
