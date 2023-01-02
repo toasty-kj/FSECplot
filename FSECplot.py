@@ -25,7 +25,7 @@ class FSECplot:
 
         pyplot.legend()
         pyplot.subplots_adjust(left=0.145, right=0.98)
-        print("Plotting successful!! "
+        print("Plotting completed!! "
               "click save to save the image")
         print("作図に成功しました。画像を保存する場合はウィンドウ内のセーブボタンをクリックしてください")
         pyplot.show()
