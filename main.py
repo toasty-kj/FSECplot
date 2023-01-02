@@ -14,9 +14,10 @@ matplotlibによって作図する
 print("source code : https://github.com/toasty-kj/FSECplot")
 print("written by Koji Takaki 2022/12/27")
 print("This is plotting program for SHIMAZU Labsolution FSEC")
+print("Please select files up to 10")
+print("作図を行うファイルを選択してください。(最大10個まで)")
 # ファイルの読み込みとListへの格納
 rf = ReadFile.ReadFile()
-# dataList = rf.readfile()
 multipleData = rf.readfiles()
 
 # 目的の列のインデックスを得る

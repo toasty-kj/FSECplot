@@ -3,16 +3,6 @@ from tkinter import filedialog
 
 
 class ReadFile:
-
-    def readfile(self):
-        typ = [("textfile", "*.txt"), ("csvfile", "*.csv"), ("Excelfile", "*.xlsx")]
-        file = filedialog.askopenfilename(filetypes=typ)
-        print(file)
-        f = open(file, "r")
-        dataList = f.readlines()
-        f.close()
-        return dataList
-
     def readfiles(self):
         # ルートウィンドウの非表示
         root = tkinter.Tk()
