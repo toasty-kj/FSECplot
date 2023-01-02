@@ -11,7 +11,9 @@ import StartEnd
 その範囲においてdataListを読み込み空白で区切って一番目をtime, ２番目をintensityとしてリストに格納する
 matplotlibによって作図する
 '''
-print("This is plotting program for FSEC")
+print("source code : https://github.com/toasty-kj/FSECplot")
+print("written by Koji Takaki 2022/12/27")
+print("This is plotting program for SHIMAZU Labsolution FSEC")
 # ファイルの読み込みとListへの格納
 rf = ReadFile.ReadFile()
 # dataList = rf.readfile()
