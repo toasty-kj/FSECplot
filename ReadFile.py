@@ -1,3 +1,4 @@
+import tkinter
 from tkinter import filedialog
 
 
@@ -13,6 +14,9 @@ class ReadFile:
         return dataList
 
     def readfiles(self):
+        # ルートウィンドウの非表示
+        root = tkinter.Tk()
+        root.withdraw()
         typ = [("textfile", "*.txt"), ("csvfile", "*.csv"), ("Excelfile", "*.xlsx")]
         files = filedialog.askopenfilenames(filetypes=typ)
         length = len(files)
