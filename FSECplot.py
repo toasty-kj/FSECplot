@@ -12,7 +12,7 @@ class FSECplot:
             label = "GFP fluorescence intensity (A.U.)"
         else:
             label = "Tryptophan fluorescence intensity (A.U.)"
-        pyplot.xlabel("Ret.time(min)", {"fontsize": 15})
+        pyplot.xlabel("Retention time(min)", {"fontsize": 13})
         pyplot.ylabel(label, {"fontsize": 12})
         i = 0
         for i in range(len(list)):
@@ -25,6 +25,8 @@ class FSECplot:
 
         pyplot.legend()
         pyplot.subplots_adjust(left=0.145, right=0.98)
+        # pyplot.xticks(numpy.arange(0, 10.1, step=1))
+        # pyplot.minorticks_on()
         print("Plotting completed!! "
               "click save to save the image")
         print("作図に成功しました。画像を保存する場合はウィンドウ内のセーブボタンをクリックしてください")

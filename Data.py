@@ -1,3 +1,5 @@
+import re
+
 import StartEnd
 
 
@@ -9,6 +11,7 @@ class Data:
         self.end = startEnd.getEnd(sel, data_list)
         self.data_list = data_list
         self.name = data_list[3]
+        self.default = Data.extract_name(self, data_list[3])
 
     def get_time(self, data):
         dataList = data.data_list
@@ -35,3 +38,8 @@ class Data:
                 break
             intensity.append(float(line[1]))
         return intensity
+
+    def extract_name(self, string):
+        p = r'_(.*?)_'
+        r = re.findall(p, string)
+        return r
