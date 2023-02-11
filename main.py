@@ -36,11 +36,21 @@ while True:
     # print(time[-1])
     # matplotlibを用いた作図
     fsec = FSECplot.FSECplot()
-    fsec.plotfsec(lists, sel)
+    fsec.plotfsec(lists, sel, False)
 
-    print("新たな作図をする場合は1, 終了する場合は0を入力してください")
+    print("新たな作図をする場合は1,先ほどのデータで作図しなおす場合は2, 終了する場合は0を入力してください")
     job = input()
     if job == "0":
+        print("プログラムを終了します。")
         break
+    elif job == "2":
+        print("拡大した図を作成しますか? 拡大縮尺によって目盛りが自動調整されます")
+        inp = input("YesならyをNoならnを入力してください")
+        if inp == "y":
+            fsec.plotfsec(lists, sel, True)
+            break
+        else:
+            fsec.plotfsec(lists, sel, False)
+            break
     else:
         continue

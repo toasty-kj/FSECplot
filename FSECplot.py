@@ -1,8 +1,9 @@
+import numpy
 from matplotlib import pyplot
 
 
 class FSECplot:
-    def plotfsec(self, lists, sel):
+    def plotfsec(self, lists, sel, zoom):
         print("Input the title")
         print("図のタイトルを記入してください")
         title = input("ENTER to skip >>")
@@ -27,6 +28,10 @@ class FSECplot:
 
         pyplot.legend()
         pyplot.subplots_adjust(left=0.145, right=0.98)
+        pyplot.xlim([0, 10])
+        pyplot.grid(which="both", linestyle="--")
+        if zoom == False:
+            pyplot.xticks(numpy.arange(0, 10.1, step=1))
         # pyplot.xticks(numpy.arange(0, 10.1, step=1))
         # pyplot.minorticks_on()
         print("Plotting completed!! "
