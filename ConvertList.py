@@ -8,3 +8,9 @@ class ConvertList:
         for i in range(numlist + 1):
             lists.append(Data.Data(sel, multipleData[i]))
         return lists
+
+
+'''
+exe化する場合
+
+'''
