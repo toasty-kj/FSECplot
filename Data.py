@@ -42,4 +42,4 @@ class Data:
     def extract_name(self, string):
         p = r'_(.*?)_'
         r = re.findall(p, string)
-        return r
+        return r[0]
