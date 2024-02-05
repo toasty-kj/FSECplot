@@ -19,7 +19,18 @@
     "start": "electron-forge start",
     "package": "electron-forge package",
     "make": "electron-forge make",
-    "publish": "electron-forge publish"
+    "publish": "electron-forge publish",
+    "format": "prettier --write \"projects/**/*.+(js|json|ts|css|scss|md|ts)",
+    "precommit": "lint-staged"
+  },
+  "pre-commit": [
+    "lint-staged"
+  ],
+  "lint-staged": {
+    "projects/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
+      "npm run format",
+      "git add"
+    ]
   },
   "main": "dist/main.js",
   "private": true,
@@ -35,6 +46,8 @@
     "electron-debug": "^3.2.0",
     "electron-reloader": "^1.2.3",
     "electron-squirrel-startup": "^1.0.0",
+    "pre-commit": "^1.2.2",
+    "prettier": "^3.2.5",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "update-electron-app": "^2.0.1",
@@ -52,12 +65,14 @@
     "@electron-forge/publisher-github": "^6.1.1",
     "@types/jasmine": "~4.3.0",
     "electron": "^23.1.0",
+    "husky": "^9.0.10",
     "jasmine-core": "~4.5.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.1.0",
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.0.0",
+    "lint-staged": "^15.2.2",
     "npm-run-all": "^4.1.5",
     "typescript": "~4.9.4",
     "wait-on": "^7.0.1"
@@ -65,5 +80,10 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/toasty-kj/FSECplot.git"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run format"
+    }
   }
 }
