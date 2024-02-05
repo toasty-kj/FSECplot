@@ -1,9 +1,9 @@
 {
-  "name": "my-angtron-app-name",
-  "productName": "myAngtronApp",
-  "version": "0.0.6",
-  "author": "hoeghoge company",
-  "description": "ak first electron app.",
+  "name": "fsec-plotter",
+  "productName": "FSECPlotter",
+  "version": "0.0.1",
+  "author": "Koji Takaki",
+  "description": "plotting app for Shimazu FSEC output(text file)",
   "scripts": {
     "ng": "ng",
     "build": "npm-run-all -s build:el build:ng",
@@ -64,6 +64,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/AKDeveloper1978/angtron.git"
+    "url": "https://github.com/toasty-kj/FSECplot.git"
   }
 }
