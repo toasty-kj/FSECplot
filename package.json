@@ -1,9 +1,9 @@
 {
-  "name": "my-angtron-app-name",
-  "productName": "myAngtronApp",
-  "version": "0.0.6",
-  "author": "hoeghoge company",
-  "description": "ak first electron app.",
+  "name": "fsec-plotter",
+  "productName": "fsec-plotter",
+  "version": "0.0.0",
+  "author": "koji takaki",
+  "description": "plotting app to create plot with output by Shimazu- Fluorescence-Detection Size-Exclusion Chromatography",
   "scripts": {
     "ng": "ng",
     "build": "npm-run-all -s build:el build:ng",
