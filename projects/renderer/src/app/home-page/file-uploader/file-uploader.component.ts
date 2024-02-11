@@ -12,4 +12,19 @@ export class FileUploaderComponent implements OnInit {
   async ngOnInit() {
     this.users = await window.myAPI.loadUsers()
   }
+
+  /**ファイルが選択された際に選択されたファイルパスを取得する */
+  onFileSelected(event: any) {
+    const files: File = event.target.files
+    const filePathList = this.getFilePathListFromFileList(files)
+    console.log(filePathList)
+  }
+
+  getFilePathListFromFileList = (fileList: any) => {
+    const filePathList: string[] = []
+    for (let i = 0; i < fileList.length; i++) {
+      filePathList.push(fileList[i.toString()].path)
+    }
+    return filePathList
+  }
 }
