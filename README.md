@@ -28,7 +28,12 @@ git clone https://github.com/toasty-kj/FSECplot.git
 cd FSECplot
 ```
 
-3. このプログラムを動かすにあたってpythonのライブラリであるmatplotlibをインストールする必要があります。  
+3. パッケージのインストール
+```bash
+npm ci
+```
+
+4. このプログラムを動かすにあたってpythonのライブラリであるmatplotlibをインストールする必要があります。  
 コマンドラインから以下のコマンドを入力することでインストールできます。
 
 ```python:title
