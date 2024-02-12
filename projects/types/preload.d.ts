@@ -1,9 +1,9 @@
 export interface MyAPI {
-  loadUsers: () => Promise<{ userId: number; userName: string }[]>;
+  loadUsers: () => Promise<{ userId: number; userName: string }[]>
 }
 
 declare global {
   interface Window {
-    myAPI: MyAPI;
+    myAPI: MyAPI
   }
 }
