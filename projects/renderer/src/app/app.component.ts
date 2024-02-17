@@ -9,7 +9,5 @@ export class AppComponent implements OnInit {
   users: { userId: number; userName: string }[] = []
   currentTime = new Date()
 
-  async ngOnInit() {
-    this.users = await window.myAPI.loadUsers()
-  }
+  async ngOnInit() {}
 }

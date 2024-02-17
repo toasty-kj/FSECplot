@@ -15,9 +15,7 @@ export class FileUploaderComponent implements OnInit {
 
   constructor(private api: SendDataService) {}
 
-  async ngOnInit() {
-    this.users = await window.myAPI.loadUsers()
-  }
+  async ngOnInit() {}
 
   /**ファイルが選択された際に選択されたファイルパスを取得する */
   async onFileSelected(event: any) {
@@ -25,9 +23,6 @@ export class FileUploaderComponent implements OnInit {
     const filePathList = this.getFilePathListFromFileList(files)
     console.log(filePathList)
 
-    // window.filePathAPI.sendPathList(filePathList).then((data) => {
-    //   console.log(data)
-    // })
     const response = await this.api.sendSelectedFilePathList(filePathList)
     console.log(JSON.stringify(response))
   }
