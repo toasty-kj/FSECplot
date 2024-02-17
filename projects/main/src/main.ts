@@ -3,6 +3,7 @@ import * as path from 'path'
 import * as fs from 'fs'
 import debug from 'electron-debug'
 import electronReloader from 'electron-reloader'
+import { PythonShell } from 'python-shell'
 
 //Windowsにインストールした時用の処理
 //参考URL:https://www.electronforge.io/config/makers/squirrel.windows
@@ -54,6 +55,7 @@ function createWindow() {
     //本番モード
     win.loadFile(path.join(__dirname, 'renderer/index.html'))
   }
+  return win
 }
 
 app.whenReady().then(async () => {
@@ -64,7 +66,7 @@ app.whenReady().then(async () => {
 
   //users.jsonをロードする。
   ipcMain.handle('loadUsers', loadUsers)
-
+  PythonShell.run('projects/main/src/main.py')
   createWindow()
 
   app.on('activate', function () {
