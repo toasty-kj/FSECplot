@@ -3,6 +3,7 @@ import * as path from 'path'
 import * as fs from 'fs'
 import debug from 'electron-debug'
 import electronReloader from 'electron-reloader'
+import { PythonShell } from 'python-shell'
 
 //Windowsにインストールした時用の処理
 //参考URL:https://www.electronforge.io/config/makers/squirrel.windows
@@ -10,14 +11,6 @@ if (require('electron-squirrel-startup')) app.quit()
 
 //自動アップデートに対応
 require('update-electron-app')()
-
-const loadUsers = async (): Promise<{ userId: number; userName: string }[]> => {
-  const loadData = JSON.parse(
-    fs.readFileSync(path.join(__dirname, '../mock', './users.json'), 'utf-8'),
-  ) as { userId: number; userName: string }[]
-
-  return loadData
-}
 
 function createWindow() {
   const isDevMode: boolean = !!process.argv.find(
@@ -54,6 +47,7 @@ function createWindow() {
     //本番モード
     win.loadFile(path.join(__dirname, 'renderer/index.html'))
   }
+  return win
 }
 
 app.whenReady().then(async () => {
@@ -63,8 +57,7 @@ app.whenReady().then(async () => {
   }
 
   //users.jsonをロードする。
-  ipcMain.handle('loadUsers', loadUsers)
-
+  PythonShell.run('projects/main/src/main.py')
   createWindow()
 
   app.on('activate', function () {
