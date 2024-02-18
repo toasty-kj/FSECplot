@@ -3,7 +3,7 @@ from models.create_data_for_chart import CreateDataForChart
 from models.ReadFile import ReadFile
 
 
-def create_chart(path_list:list):
+def create_chart(path_list:list, title:str, is_gfp_or_typ:str):
     # ファイルの読み込みとListへの格納
 
     # 目的の列のインデックスを得る
@@ -12,12 +12,12 @@ def create_chart(path_list:list):
     # selとmultipleDataを引数にとって
     rf = ReadFile()
     input_data = rf.create_input_file_data(path_list)
-    createData = CreateDataForChart(input_data)
+    createData = CreateDataForChart(input_data,is_gfp_or_typ)
     lists = createData.convert_list()
     sel = createData.is_GFP_or_Trp
 
     # print(time[-1])
     # matplotlibを用いた作図
     fsec = FSECplot()
-    fsec.plotfsec(lists, sel, False)
+    fsec.plotfsec(lists, sel, False,title)
     

@@ -1,7 +1,7 @@
 from models.Data import Data
 
 class CreateDataForChart:
-    def __init__(self,data_path_list:[]) -> None:
+    def __init__(self,data_path_list:[],is_gfp_or_typ:str) -> None:
         # validate_file_path_list(data_path_list)
         self.data_path_list = data_path_list
 
@@ -9,7 +9,7 @@ class CreateDataForChart:
         self.data_list_length =self.getNumList()
 
         # TODO 画面側から選択してもらうようにする
-        self.is_GFP_or_Trp = '1'
+        self.is_GFP_or_Trp = is_gfp_or_typ
 
 
     def getNumList(self):

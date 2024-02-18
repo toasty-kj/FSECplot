@@ -3,13 +3,10 @@ from matplotlib import pyplot
 
 
 class FSECplot:
-    def plotfsec(self, lists, sel, zoom):
+    def plotfsec(self, lists, sel, zoom, title):
         print("Input the title")
         print("図のタイトルを記入してください")
 
-        # TODO 画面から取得するようにする
-        # title = input("ENTER to skip >>")
-        title = 'test title'
 
         pyplot.title(title)
         if sel == "1":

@@ -20,10 +20,12 @@ def handle_error(e):
 
 @app.route("/api", methods=("GET", "POST"))
 def index():
-    args = request.args.getlist('pathList')
     logging.info(request.args)
-    create_chart(args)
-    return jsonify({'recievedPath': args})
+    path_list = request.args.getlist('pathList')
+    title = request.args.get('title')
+    is_gfp_or_typ = request.args.get('fluorescence')
+    create_chart(path_list,title=title, is_gfp_or_typ=is_gfp_or_typ)
+    return jsonify({'recievedPath': path_list})
 
 if __name__ == "__main__":
     app.run(host="localhost", port=5001)
