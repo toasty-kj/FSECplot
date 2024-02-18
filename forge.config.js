@@ -11,7 +11,7 @@ module.exports = {
       config: {
         authors: 'koji takaki',
         description: 'FSECの作図アプリケーション',
-        setupIcon: path.join(__dirname, './assets/icon/icon.ico'),
+        setupIcon: path.join(__dirname, './assets/icon/settings.ico'),
       },
     },
     /*
