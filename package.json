@@ -1,7 +1,7 @@
 {
   "name": "fsec-plotter",
   "productName": "fsec-plotter",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "author": "koji takaki",
   "description": "plotting app to create plot with output by Shimazu- Fluorescence-Detection Size-Exclusion Chromatography",
   "scripts": {

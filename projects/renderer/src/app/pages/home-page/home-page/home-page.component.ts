@@ -1,6 +1,6 @@
 import { Component } from '@angular/core'
-import { app } from 'electron'
 import { SendDataService } from '../../../service/send-data.service'
+import { logoBase64 } from './logo-image'
 
 @Component({
   selector: 'app-home-page',
@@ -8,6 +8,7 @@ import { SendDataService } from '../../../service/send-data.service'
   styleUrls: ['./home-page.component.css'],
 })
 export class HomePageComponent {
+  logoImage = logoBase64
   tag = ''
   title = ''
   filePath: string[] = []
