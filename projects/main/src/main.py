@@ -5,7 +5,6 @@ from flask_cors import CORS
 
 from controller.controller import create_chart
 from logging_initializer.init_logging import init_logging
-from utility.file_handler import validate_file_path_list
 
 app = Flask(__name__)
 CORS(app)

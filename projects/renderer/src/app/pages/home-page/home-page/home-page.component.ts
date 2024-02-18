@@ -19,16 +19,13 @@ export class HomePageComponent {
 
   getInputTitle(newTitle: string) {
     this.title = newTitle
-    console.log(this.title)
   }
 
   getFilePath(newFilePath: string[]) {
     this.filePath = newFilePath
-    console.log(this.filePath)
   }
 
   async _onSubmit() {
-    console.log('on click!!', this.filePath, this.title, this.tag)
     // TODO 入力のバリデーションを作成する
     const responce = await this.api.sendSelectedFilePathList(
       this.filePath,
