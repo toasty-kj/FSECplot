@@ -25,8 +25,8 @@ module.exports = {
       name: '@electron-forge/publisher-github',
       config: {
         repository: {
-          owner: 'AKDeveloper1978',
-          name: 'angtron',
+          owner: 'toasty-kj',
+          name: 'FSECplot',
         },
         prerelease: false,
         draft: true,
