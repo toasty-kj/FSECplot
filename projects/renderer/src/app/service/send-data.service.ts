@@ -9,9 +9,17 @@ export class SendDataService {
 
   constructor(private http: HttpClient) {}
 
-  sendSelectedFilePathList = (pathList: string[]) => {
+  sendSelectedFilePathList = (
+    pathList: string[],
+    title: string,
+    fluorescence: string,
+  ) => {
     return new Promise((resolve, reject) => {
-      const params = { pathList: pathList }
+      const params = {
+        pathList: pathList,
+        title: title,
+        fluorescence: fluorescence,
+      }
       this.http.get(`${this.URL}`, { params: params }).subscribe(
         (response) => {
           resolve(response)
