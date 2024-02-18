@@ -45,7 +45,7 @@ function createWindow() {
     win.webContents.openDevTools()
   } else {
     //本番モード
-    win.loadFile(path.join(__dirname, 'renderer/index.html'))
+    win.loadFile(path.join(__dirname, 'renderer/src/index.html'))
   }
   return win
 }
