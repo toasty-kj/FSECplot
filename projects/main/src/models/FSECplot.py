@@ -7,7 +7,6 @@ class FSECplot:
         print("Input the title")
         print("図のタイトルを記入してください")
 
-
         pyplot.title(title)
         if sel == "1":
             label = "GFP fluorescence intensity (A.U.)"
