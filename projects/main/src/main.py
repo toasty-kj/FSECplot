@@ -3,8 +3,9 @@ import traceback
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 
-from logging_initializer.test import init_logging
-from utility.file_handler import create_file_if_not_exists
+from controller.controller import create_chart
+from logging_initializer.init_logging import init_logging
+from utility.file_handler import validate_file_path_list
 
 app = Flask(__name__)
 CORS(app)
@@ -21,6 +22,7 @@ def handle_error(e):
 def index():
     args = request.args.getlist('pathList')
     logging.info(request.args)
+    create_chart(args)
     return jsonify({'recievedPath': args})
 
 if __name__ == "__main__":

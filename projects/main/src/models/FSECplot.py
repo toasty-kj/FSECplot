@@ -6,7 +6,10 @@ class FSECplot:
     def plotfsec(self, lists, sel, zoom):
         print("Input the title")
         print("図のタイトルを記入してください")
-        title = input("ENTER to skip >>")
+
+        # TODO 画面から取得するようにする
+        # title = input("ENTER to skip >>")
+        title = 'test title'
 
         pyplot.title(title)
         if sel == "1":
@@ -21,7 +24,10 @@ class FSECplot:
             intensity = lists[i].get_intensity(lists[i])
             print("図に表示する以下のファイルの名前を教えてください。")
             print("what is the legend of ", lists[i].name)
-            legend = input("ENTER to default >> " + lists[i].default)
+
+            # TODO 画面から上とるようにする
+            # legend = input("ENTER to default >> " + lists[i].default)
+            legend =  lists[i].default
             if legend == "":
                 legend = lists[i].default
             pyplot.plot(time, intensity, label=legend)

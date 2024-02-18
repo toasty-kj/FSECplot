@@ -1,6 +1,6 @@
 import re
 
-import StartEnd
+import models.StartEnd as StartEnd
 
 
 class Data:
@@ -43,3 +43,5 @@ class Data:
         p = r'_(.*?)_'
         r = re.findall(p, string)
         return r[0]
+    
+    

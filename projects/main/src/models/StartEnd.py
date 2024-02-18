@@ -1,4 +1,4 @@
-import GetIndices
+import models.GetIndices as GetIndices
 
 
 class StartEnd:
@@ -9,7 +9,8 @@ class StartEnd:
         while True:
             print("Input 1 for GFP, 2 for Tryptophan")
             print("GFPなら1をTryptophanなら2を入力してください")
-            flu = input(">>")
+            # flu = input(">>")
+            flu = "1"
             if flu == "1":
                 break
             if flu == "2":
