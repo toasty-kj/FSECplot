@@ -1,22 +1,9 @@
-import GetIndices
+import models.GetIndices as GetIndices
 
 
 class StartEnd:
     def __init__(self):
         self.flu = None
-
-    def getSel(self):
-        while True:
-            print("Input 1 for GFP, 2 for Tryptophan")
-            print("GFPなら1をTryptophanなら2を入力してください")
-            flu = input(">>")
-            if flu == "1":
-                break
-            if flu == "2":
-                break
-            else:
-                print("半角の1もしくは2を入力してください。")
-        return flu
 
     def getStart(self, flu, dataList):
         getIndex = GetIndices.GetIndices()
