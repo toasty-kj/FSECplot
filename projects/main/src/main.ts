@@ -46,6 +46,7 @@ function createWindow() {
   } else {
     //本番モード
     win.loadFile(path.join(__dirname, 'renderer/index.html'))
+    win.webContents.openDevTools()
   }
   return win
 }
@@ -57,7 +58,16 @@ app.whenReady().then(async () => {
   }
 
   //users.jsonをロードする。
-  PythonShell.run('projects/main/src/main.py')
+  const pythonMainFilePath = path.join(__dirname, 'main/src/main.py')
+  PythonShell.run(pythonMainFilePath)
+    .then((res) => {
+      console.log(res)
+      fs.writeFileSync('python-shell.log', res.toString())
+    })
+    .catch((err) => {
+      fs.writeFileSync('python-shell-error.log', err.toString())
+    })
+
   createWindow()
 
   app.on('activate', function () {

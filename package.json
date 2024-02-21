@@ -6,6 +6,7 @@
   "description": "plotting app to create plot with output by Shimazu- Fluorescence-Detection Size-Exclusion Chromatography",
   "scripts": {
     "ng": "ng",
+    "build:all": "rm -rf dist && rm -rf out && npm run build && cp -r projects/main dist && npm run make",
     "build": "npm-run-all -s build:el build:ng",
     "test": "ng test",
     "serve": "npm-run-all -p serve:ng serve-watch:el",

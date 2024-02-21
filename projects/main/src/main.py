@@ -1,15 +1,15 @@
-import logging
+# import logging
 import traceback
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 
 from controller.controller import create_chart
-from logging_initializer.init_logging import init_logging
+# from logging_initializer.init_logging import init_logging
 
 app = Flask(__name__)
 CORS(app)
 
-init_logging()
+# init_logging()
 
 @app.errorhandler(Exception)
 def handle_error(e):
@@ -19,7 +19,7 @@ def handle_error(e):
 
 @app.route("/api", methods=("GET", "POST"))
 def index():
-    logging.info(request.args)
+    # logging.info(request.args)
     path_list = request.args.getlist('pathList')
     title = request.args.get('title')
     is_gfp_or_typ = request.args.get('fluorescence')
