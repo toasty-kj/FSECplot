@@ -4,6 +4,7 @@ import * as fs from 'fs'
 import debug from 'electron-debug'
 import electronReloader from 'electron-reloader'
 import { PythonShell } from 'python-shell'
+import { spawn } from 'child_process'
 
 //Windowsにインストールした時用の処理
 //参考URL:https://www.electronforge.io/config/makers/squirrel.windows
@@ -56,25 +57,24 @@ app.whenReady().then(async () => {
     app.quit()
   }
 
-  const pythonMainFilePath = path.join(__dirname, 'main/src/main.py')
-  PythonShell.run(pythonMainFilePath)
-    .then((res) => {
-      console.log(res)
-      fs.writeFileSync('python-shell.log', res.toString())
-    })
-    .catch((err) => {
-      fs.writeFileSync('python-shell-error.log', err.toString())
-    })
+  // パッケージ化する際には読み込むpythonファイルのパスを変更する
+  // exe: './resources/app/projects/main/src/main.py'
+  // dev: 'projects/main/src/main.py'
+  const subpy = require('child_process').spawn(
+    path.join(__dirname, 'main/main'),
+  )
 
+  // PythonShell.run('main.py')
   createWindow()
 
   app.on('activate', function () {
     if (BrowserWindow.getAllWindows().length === 0) createWindow()
   })
-})
 
-app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') {
-    app.quit()
-  }
+  app.on('window-all-closed', () => {
+    if (process.platform !== 'darwin') {
+      subpy.kill()
+      app.quit()
+    }
+  })
 })

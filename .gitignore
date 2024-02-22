@@ -56,3 +56,4 @@ Thumbs.db
 
 # メモを除外する。
 ._memos
+node_modules
