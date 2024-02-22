@@ -39,13 +39,7 @@ cd FSECplot
 
 ```bash
 npm ci
-```
-
-4. このプログラムを動かすにあたってpythonのライブラリであるmatplotlibをインストールする必要があります。  
-   コマンドラインから以下のコマンドを入力することでインストールできます。
-
-```python:title
-pip install matplotlib
+pip install -r requirements.txt
 ```
 
 ~~次に以下のようにしてzip fileでファイルをダウンロード、解凍してください。~~
