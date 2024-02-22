@@ -60,7 +60,9 @@ app.whenReady().then(async () => {
   // パッケージ化する際には読み込むpythonファイルのパスを変更する
   // exe: './resources/app/projects/main/src/main.py'
   // dev: 'projects/main/src/main.py'
-  var subpy = require('child_process').spawn(path.join(__dirname, 'main/main'))
+  const subpy = require('child_process').spawn(
+    path.join(__dirname, 'main/main'),
+  )
 
   // PythonShell.run('main.py')
   createWindow()
@@ -68,10 +70,11 @@ app.whenReady().then(async () => {
   app.on('activate', function () {
     if (BrowserWindow.getAllWindows().length === 0) createWindow()
   })
-})
 
-app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') {
-    app.quit()
-  }
+  app.on('window-all-closed', () => {
+    if (process.platform !== 'darwin') {
+      subpy.kill()
+      app.quit()
+    }
+  })
 })
