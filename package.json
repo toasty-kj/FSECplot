@@ -1,7 +1,7 @@
 {
   "name": "fsec-plotter",
   "productName": "fsec-plotter",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "author": "koji takaki",
   "description": "plotting app to create plot with output by Shimazu- Fluorescence-Detection Size-Exclusion Chromatography",
   "scripts": {
@@ -15,6 +15,7 @@
     "watch:el": "tsc --build --watch projects/main/tsconfig.json",
     "serve-watch:el": "wait-on tcp:4200 && npm-run-all -p watch:el serve:el",
     "build:ng": "ng build --configuration production --base-href ./",
+    "build:all": "rm -rf dist && rm -rf out && npm run build ",
     "serve:ng": "ng serve",
     "start": "electron-forge start",
     "package": "electron-forge package",

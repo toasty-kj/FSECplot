@@ -42,7 +42,6 @@ npm ci
 pip install -r requirements.txt
 ```
 
-
 ~~次に以下のようにしてzip fileでファイルをダウンロード、解凍してください。~~
 ![image](https://user-images.githubusercontent.com/74779681/209974374-04ca32b4-c8c6-48d3-9deb-0b7fc10a2ab5.png)~
 
