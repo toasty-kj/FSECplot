@@ -4,12 +4,12 @@ from flask import Flask, jsonify, request
 from flask_cors import CORS
 
 from controller.controller import create_chart
-from logging_initializer.init_logging import init_logging
+# from logging_initializer.init_logging import init_logging
 
 app = Flask(__name__)
 CORS(app)
 
-init_logging()
+# init_logging()
 
 @app.errorhandler(Exception)
 def handle_error(e):

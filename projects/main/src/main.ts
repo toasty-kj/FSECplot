@@ -4,6 +4,7 @@ import * as fs from 'fs'
 import debug from 'electron-debug'
 import electronReloader from 'electron-reloader'
 import { PythonShell } from 'python-shell'
+import { spawn } from 'child_process'
 
 //Windowsにインストールした時用の処理
 //参考URL:https://www.electronforge.io/config/makers/squirrel.windows
@@ -56,8 +57,12 @@ app.whenReady().then(async () => {
     app.quit()
   }
 
-  //users.jsonをロードする。
-  PythonShell.run('projects/main/src/main.py')
+  // パッケージ化する際には読み込むpythonファイルのパスを変更する
+  // exe: './resources/app/projects/main/src/main.py'
+  // dev: 'projects/main/src/main.py'
+  var subpy = require('child_process').spawn(path.join(__dirname, 'main/main'))
+
+  // PythonShell.run('main.py')
   createWindow()
 
   app.on('activate', function () {
