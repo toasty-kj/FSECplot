@@ -39,6 +39,7 @@ cd FSECplot
 
 ```bash
 npm ci
+pip install -r requirements.txt
 ```
 
 ~~次に以下のようにしてzip fileでファイルをダウンロード、解凍してください。~~
