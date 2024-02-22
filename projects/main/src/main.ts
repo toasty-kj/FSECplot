@@ -56,8 +56,16 @@ app.whenReady().then(async () => {
     app.quit()
   }
 
-  //users.jsonをロードする。
-  PythonShell.run('projects/main/src/main.py')
+  const pythonMainFilePath = path.join(__dirname, 'main/src/main.py')
+  PythonShell.run(pythonMainFilePath)
+    .then((res) => {
+      console.log(res)
+      fs.writeFileSync('python-shell.log', res.toString())
+    })
+    .catch((err) => {
+      fs.writeFileSync('python-shell-error.log', err.toString())
+    })
+
   createWindow()
 
   app.on('activate', function () {
