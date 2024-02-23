@@ -5,13 +5,13 @@
 
 # すぐに実行するには
 
-すぐに実行するためには`FSEC plotter.exe`をのみをダウンロードしてダブルクリックで実行してください。
-ダウンロード手順は下記のとおりです。
+[こちら](https://github.com/toasty-kj/FSECplot/releases)から最新バージョンのインストーラー(Setup.exe)をダウンロードする。
+![image](https://github.com/toasty-kj/FSECplot/assets/74779681/6e952326-10e0-40ea-9bf9-2bb63b2d2d45)
 
-- [こちら](https://github.com/toasty-kj/FSECplot/blob/develop/FSEC%20plotter.exe)画面に遷移
-- 右上の三点リーダー(・・・)をクリックする
-- ダウンロードをクリックする
-- ダウンロードした`FSEC plotter.exe`を実行する
+
+- ダウンロードしたインストーラーをダブルクリックして実行する
+- プログラムを起動する
+
 
 # プログラムを編集するには
 
