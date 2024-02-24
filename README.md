@@ -8,10 +8,8 @@
 [こちら](https://github.com/toasty-kj/FSECplot/releases)から最新バージョンのインストーラー(Setup.exe)をダウンロードする。
 ![image](https://github.com/toasty-kj/FSECplot/assets/74779681/6e952326-10e0-40ea-9bf9-2bb63b2d2d45)
 
-
 - ダウンロードしたインストーラーをダブルクリックして実行する
 - プログラムを起動する
-
 
 # プログラムを編集するには
 

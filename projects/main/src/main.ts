@@ -58,13 +58,13 @@ app.whenReady().then(async () => {
   }
 
   // パッケージ化する際には読み込むpythonファイルのパスを変更する
-  // exe: './resources/app/projects/main/src/main.py'
-  // dev: 'projects/main/src/main.py'
+  // exe: 'main/main'
   const subpy = require('child_process').spawn(
     path.join(__dirname, 'main/main'),
   )
+  // dev: 'projects/main/src/main.py'
+  PythonShell.run('main.py')
 
-  // PythonShell.run('main.py')
   createWindow()
 
   app.on('activate', function () {
