@@ -1,4 +1,4 @@
-import Data
+import InputData
 
 
 class ConvertList:
@@ -6,7 +6,7 @@ class ConvertList:
         lists = []
         i = 0
         for i in range(numlist + 1):
-            lists.append(Data.Data(sel, multipleData[i]))
+            lists.append(InputData.InputData(sel, multipleData[i]))
         return lists
 
 

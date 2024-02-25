@@ -1,4 +1,4 @@
-from models.Data import Data
+from models.InputData import InputData
 
 class CreateDataForChart:
     """データを変換して描画する"""
@@ -12,7 +12,7 @@ class CreateDataForChart:
         """データごとにクラスに変換して、配列に入れる"""
         lists = []
         for data in self.data_path_list:
-            lists.append(Data(sel=self.is_GFP_or_Trp, data_list=data))
+            lists.append(InputData(sel=self.is_GFP_or_Trp, data_list=data))
         return lists
     
     
