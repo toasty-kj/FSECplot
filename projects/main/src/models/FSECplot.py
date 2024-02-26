@@ -7,13 +7,13 @@ class FSECplot:
         print("Input the title")
         print("図のタイトルを記入してください")
 
-        pyplot.title(title)
+        pyplot.title(title,fontdict={"fontname":"MS Gothic"})
         if sel == "1":
             label = "GFP fluorescence intensity (A.U.)"
         else:
             label = "Tryptophan fluorescence intensity (A.U.)"
-        pyplot.xlabel("Retention time(min)", {"fontsize": 13})
-        pyplot.ylabel(label, {"fontsize": 12})
+        pyplot.xlabel("Retention time(min)", {"fontsize": 13, "fontname":"Times New Roman"})
+        pyplot.ylabel(label, {"fontsize": 12,"fontname":"Times New Roman"})
         i = 0
         for i in range(len(lists)):
             time = lists[i].get_time(lists[i])
