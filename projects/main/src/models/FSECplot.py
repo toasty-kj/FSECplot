@@ -22,9 +22,9 @@ class FSECplot:
             return "Tryptophan fluorescence intensity (A.U.)"
 
     def plotfsec(self, lists:InputData  ):
-        pyplot.title(self.title)
-        pyplot.xlabel(self.xlabel, {"fontsize": self.x_font_size})
-        pyplot.ylabel(self.ylabel, {"fontsize": self.y_font_size})
+        pyplot.title(self.title,fontdict={"fontname":"MS Gothic"})
+        pyplot.xlabel(self.xlabel, {"fontsize": self.x_font_size,"fontname":"Times New Roman"})
+        pyplot.ylabel(self.ylabel, {"fontsize": self.y_font_size,"fontname":"Times New Roman"})
         i = 0
         for i in range(len(lists)):
             time = lists[i].get_time(lists[i])
