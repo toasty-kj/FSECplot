@@ -66,7 +66,6 @@ app.whenReady().then(async () => {
   // dev: 'projects/main/src/main.py'
   PythonShell.run('projects/main/src/main.py')
     .then((res) => {
-      console.log(res)
       fs.writeFileSync('python-shell.log', res.toString())
     })
     .catch((err) => {

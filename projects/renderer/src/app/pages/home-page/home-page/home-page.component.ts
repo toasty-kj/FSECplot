@@ -22,8 +22,11 @@ export class HomePageComponent {
     this.title = newTitle
   }
 
-  getFilePath(newFilePath: string[]) {
+  async getFilePath(newFilePath: string[]) {
     this.filePath = newFilePath
+    // filepathからデフォルトのデータ名をバックエンドから取得する
+    const result = await this.api.getDefaultNameByFilePathList(this.filePath)
+    console.log(result)
   }
 
   async _onSubmit() {

@@ -5,7 +5,7 @@ from models.InputData import InputData
 
 
 class FSECplot:
-    def __init__(self,data_path_list:[], is_gfp_or_typ:str, chart_title:str,is_zoom = False ) -> None:
+    def __init__(self, is_gfp_or_typ:str, chart_title:str,is_zoom = False ) -> None:
         self.is_gfp_or_typ = is_gfp_or_typ
         self.ylabel = self.get_ylabel_by_fluorescence(is_gfp_or_typ)
         self.y_font_size = 12

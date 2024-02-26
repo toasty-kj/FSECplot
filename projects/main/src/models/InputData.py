@@ -44,4 +44,5 @@ class InputData:
         r = re.findall(p, string)
         return r[0]
     
-    
+    def get_name(self):
+        return self.name

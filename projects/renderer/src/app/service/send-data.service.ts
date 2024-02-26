@@ -9,6 +9,25 @@ export class SendDataService {
 
   constructor(private http: HttpClient) {}
 
+  getDefaultNameByFilePathList = (pathList: string[]) => {
+    return new Promise((resolve, reject) => {
+      const params = {
+        pathList: pathList,
+      }
+
+      this.http
+        .get(`${this.URL}/get-default-data-name`, { params: params })
+        .subscribe(
+          (response) => {
+            resolve(response)
+          },
+          (error) => {
+            reject(error)
+          },
+        )
+    })
+  }
+
   sendSelectedFilePathList = (
     pathList: string[],
     title: string,
