@@ -58,19 +58,19 @@ app.whenReady().then(async () => {
   }
 
   // パッケージ化する際には読み込むpythonファイルのパスを変更する
-  // exe: 'main/main'
-  // const subpy = require('child_process').spawn(
-  //   path.join(__dirname, 'main/main'),
-  // )
+  // exe: リリースの際は下記コメントアウトとsubpy.kill()を有効化する 'main/main'
+  const subpy = require('child_process').spawn(
+    path.join(__dirname, 'main/main'),
+  )
 
-  // dev: 'projects/main/src/main.py'
-  PythonShell.run('projects/main/src/main.py')
-    .then((res) => {
-      fs.writeFileSync('python-shell.log', res.toString())
-    })
-    .catch((err) => {
-      fs.writeFileSync('python-shell-error.log', err.toString())
-    })
+  // dev: 開発の場合は下記コメントアウトを有効化する 'projects/main/src/main.py'
+  // PythonShell.run('projects/main/src/main.py')
+  //   .then((res) => {
+  //     fs.writeFileSync('python-shell.log', res.toString())
+  //   })
+  //   .catch((err) => {
+  //     fs.writeFileSync('python-shell-error.log', err.toString())
+  //   })
 
   createWindow()
 
@@ -81,7 +81,7 @@ app.whenReady().then(async () => {
   app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') {
       // TODO リリースの際には有効化する
-      // subpy.kill()
+      subpy.kill()
       app.quit()
     }
   })
