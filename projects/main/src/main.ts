@@ -1,4 +1,4 @@
-import { app, BrowserWindow } from 'electron'
+import { app, BrowserWindow, autoUpdater, dialog } from 'electron'
 import * as path from 'path'
 import * as fs from 'fs'
 import debug from 'electron-debug'
@@ -58,19 +58,19 @@ app.whenReady().then(async () => {
   }
 
   // パッケージ化する際には読み込むpythonファイルのパスを変更する
-  // exe: 'main/main'
-  // const subpy = require('child_process').spawn(
-  //   path.join(__dirname, 'main/main'),
-  // )
+  // exe: リリースの際は下記コメントアウトとsubpy.kill()を有効化する 'main/main'
+  const subpy = require('child_process').spawn(
+    path.join(__dirname, 'main/main'),
+  )
 
-  // dev: 'projects/main/src/main.py'
-  PythonShell.run('projects/main/src/main.py')
-    .then((res) => {
-      fs.writeFileSync('python-shell.log', res.toString())
-    })
-    .catch((err) => {
-      fs.writeFileSync('python-shell-error.log', err.toString())
-    })
+  // dev: 開発の場合は下記コメントアウトを有効化する 'projects/main/src/main.py'
+  // PythonShell.run('projects/main/src/main.py')
+  //   .then((res) => {
+  //     fs.writeFileSync('python-shell.log', res.toString())
+  //   })
+  //   .catch((err) => {
+  //     fs.writeFileSync('python-shell-error.log', err.toString())
+  //   })
 
   createWindow()
 
@@ -81,8 +81,60 @@ app.whenReady().then(async () => {
   app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') {
       // TODO リリースの際には有効化する
-      // subpy.kill()
+      subpy.kill()
       app.quit()
     }
   })
 })
+
+// ファイルの末尾に追加
+const server = 'https://update.electronjs.org'
+const feed = `${server}/toasty-kj/FSECplot/${process.platform}-${process.arch}/${app.getVersion()}`
+fs.writeFileSync('python-shell.log', feed)
+console.log(feed)
+
+if (app.isPackaged) {
+  // パッケージされている（ローカル実行ではない）
+  autoUpdater.setFeedURL({
+    url: feed,
+  })
+  autoUpdater.checkForUpdates() // アップデートを確認する
+
+  // アップデートのダウンロードが完了したとき
+  autoUpdater.on('update-downloaded', async () => {
+    const returnValue = await dialog.showMessageBox({
+      message: 'アップデートあり',
+      detail: '再起動してインストールできます。',
+      buttons: ['再起動', '後で'],
+    })
+    if (returnValue.response === 0) {
+      autoUpdater.quitAndInstall() // アプリを終了してインストール
+    }
+  })
+
+  // アップデートがあるとき
+  autoUpdater.on('update-available', () => {
+    dialog.showMessageBox({
+      message: 'アップデートがあります',
+      detail: 'ダウンロード完了後に再度通知されます。',
+      buttons: ['OK'],
+    })
+    // TODO ダウンロードフラグを立てて、update完了したらフラグを折る。フラグが立っている間は画面はローディング画面を表示する
+  })
+
+  // アップデートがないとき
+  autoUpdater.on('update-not-available', () => {
+    dialog.showMessageBox({
+      message: 'アップデートはありません',
+      buttons: ['OK'],
+    })
+  })
+
+  // エラーが発生したとき
+  autoUpdater.on('error', () => {
+    dialog.showMessageBox({
+      message: 'アップデートエラーが起きました',
+      buttons: ['OK'],
+    })
+  })
+}
