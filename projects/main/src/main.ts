@@ -1,4 +1,4 @@
-import { app, BrowserWindow } from 'electron'
+import { app, BrowserWindow, autoUpdater, dialog } from 'electron'
 import * as path from 'path'
 import * as fs from 'fs'
 import debug from 'electron-debug'
@@ -86,3 +86,54 @@ app.whenReady().then(async () => {
     }
   })
 })
+
+// ファイルの末尾に追加
+const server = 'https://update.electronjs.org'
+const feed = `${server}/toasty-kj/FSECplot/${process.platform}-${process.arch}/${app.getVersion()}`
+fs.writeFileSync('python-shell.log', feed)
+console.log(feed)
+
+if (app.isPackaged) {
+  // パッケージされている（ローカル実行ではない）
+  autoUpdater.setFeedURL({
+    url: feed,
+  })
+  autoUpdater.checkForUpdates() // アップデートを確認する
+
+  // アップデートのダウンロードが完了したとき
+  autoUpdater.on('update-downloaded', async () => {
+    const returnValue = await dialog.showMessageBox({
+      message: 'アップデートあり',
+      detail: '再起動してインストールできます。',
+      buttons: ['再起動', '後で'],
+    })
+    if (returnValue.response === 0) {
+      autoUpdater.quitAndInstall() // アプリを終了してインストール
+    }
+  })
+
+  // アップデートがあるとき
+  autoUpdater.on('update-available', () => {
+    dialog.showMessageBox({
+      message: 'アップデートがあります',
+      detail: 'ダウンロード完了後に再度通知されます。',
+      buttons: ['OK'],
+    })
+  })
+
+  // アップデートがないとき
+  autoUpdater.on('update-not-available', () => {
+    dialog.showMessageBox({
+      message: 'アップデートはありません',
+      buttons: ['OK'],
+    })
+  })
+
+  // エラーが発生したとき
+  autoUpdater.on('error', () => {
+    dialog.showMessageBox({
+      message: 'アップデートエラーが起きました',
+      buttons: ['OK'],
+    })
+  })
+}
