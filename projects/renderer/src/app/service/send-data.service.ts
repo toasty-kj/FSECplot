@@ -9,6 +9,7 @@ export class SendDataService {
 
   constructor(private http: HttpClient) {}
 
+  /**ファイルパスからデフォルトのデータ名を取得する */
   getDefaultNameByFilePathList = (
     pathList: string[],
   ): Promise<[{ path: string; name: string }]> => {
@@ -32,14 +33,16 @@ export class SendDataService {
 
   sendSelectedFilePathList = (
     pathList: string[],
+    dataNameList: string[],
     title: string,
     fluorescence: string,
   ) => {
     return new Promise((resolve, reject) => {
       const params = {
-        pathList: pathList,
-        title: title,
-        fluorescence: fluorescence,
+        pathList,
+        dataNameList,
+        title,
+        fluorescence,
       }
       this.http.get(`${this.URL}`, { params: params }).subscribe(
         (response) => {

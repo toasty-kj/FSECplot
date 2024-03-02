@@ -23,10 +23,11 @@ def _create_chart():
     """渡された変数を用いてプロットを行う"""
     logging.info(request.args)
     path_list = request.args.getlist('pathList')
+    dataNameList = request.args.getlist('dataNameList')
     title = request.args.get('title')
     is_gfp_or_typ = request.args.get('fluorescence')
     create_chart(path_list=path_list,title=title, is_gfp_or_typ=is_gfp_or_typ)
-    return jsonify({'recievedPath': path_list})
+    return jsonify({'recievedPath': path_list, 'dataNameList':dataNameList})
 
 @app.route("/api/get-default-data-name",methods=("GET", "POST"))
 def _get_default_data_name():

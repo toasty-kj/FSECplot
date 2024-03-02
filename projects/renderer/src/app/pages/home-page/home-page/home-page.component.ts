@@ -1,7 +1,7 @@
 import { Component } from '@angular/core'
 import { SendDataService } from '../../../service/send-data.service'
 import { logoBase64 } from './logo-image'
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms'
 
 @Component({
   selector: 'app-home-page',
@@ -20,7 +20,9 @@ export class HomePageComponent {
     private api: SendDataService,
     private fb: FormBuilder,
   ) {
-    this.dataNameList = this.fb.group({})
+    this.dataNameList = this.fb.group({
+      dataArray: this.fb.array([]),
+    })
   }
 
   getTag(newTag: string) {
@@ -44,6 +46,7 @@ export class HomePageComponent {
     // TODO 入力のバリデーションを作成する
     const responce = await this.api.sendSelectedFilePathList(
       this.filePath,
+      this.dataArray.value,
       this.title,
       this.tag,
     )
@@ -52,14 +55,19 @@ export class HomePageComponent {
 
   initFormArray() {
     // フォームグループを初期化する
-    this.dataNameList = this.fb.group({})
+    this.dataNameList = this.fb.group({
+      dataArray: this.fb.array([], Validators.required),
+    })
 
     // 選択されたファイルの数だけフォームを作成する
-    this.pathAndDefaultName.forEach((element, index) => {
-      this.dataNameList.addControl(
-        `control${index}`,
-        new FormControl(element.name, Validators.required),
+    this.pathAndDefaultName.forEach((element) => {
+      ;(this.dataNameList.get('dataArray') as FormArray).push(
+        this.fb.control(element.name),
       )
     })
+  }
+
+  get dataArray(): FormArray {
+    return this.dataNameList.get('dataArray') as FormArray
   }
 }
