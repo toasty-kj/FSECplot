@@ -11,7 +11,7 @@ export class SendDataService {
 
   getDefaultNameByFilePathList = (
     pathList: string[],
-  ): Promise<{ path: string; name: string }> => {
+  ): Promise<[{ path: string; name: string }]> => {
     return new Promise((resolve, reject) => {
       const params = {
         pathList: pathList,
