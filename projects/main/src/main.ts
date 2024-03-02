@@ -1,4 +1,4 @@
-import { app, BrowserWindow, ipcMain } from 'electron'
+import { app, BrowserWindow } from 'electron'
 import * as path from 'path'
 import * as fs from 'fs'
 import debug from 'electron-debug'
@@ -58,13 +58,20 @@ app.whenReady().then(async () => {
   }
 
   // パッケージ化する際には読み込むpythonファイルのパスを変更する
-  // exe: './resources/app/projects/main/src/main.py'
-  // dev: 'projects/main/src/main.py'
+  // exe: リリースの際は下記コメントアウトとsubpy.kill()を有効化する 'main/main'
   const subpy = require('child_process').spawn(
     path.join(__dirname, 'main/main'),
   )
 
-  // PythonShell.run('main.py')
+  // dev: 開発の場合は下記コメントアウトを有効化する 'projects/main/src/main.py'
+  // PythonShell.run('projects/main/src/main.py')
+  //   .then((res) => {
+  //     fs.writeFileSync('python-shell.log', res.toString())
+  //   })
+  //   .catch((err) => {
+  //     fs.writeFileSync('python-shell-error.log', err.toString())
+  //   })
+
   createWindow()
 
   app.on('activate', function () {
@@ -73,6 +80,7 @@ app.whenReady().then(async () => {
 
   app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') {
+      // TODO リリースの際には有効化する
       subpy.kill()
       app.quit()
     }

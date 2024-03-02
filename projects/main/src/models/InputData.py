@@ -3,7 +3,7 @@ import re
 import models.StartEnd as StartEnd
 
 
-class Data:
+class InputData:
     def __init__(self, sel, data_list):
         startEnd = StartEnd.StartEnd()
 
@@ -11,7 +11,7 @@ class Data:
         self.end = startEnd.getEnd(sel, data_list)
         self.data_list = data_list
         self.name = data_list[3]
-        self.default = Data.extract_name(self, data_list[3])
+        self.default = InputData.extract_name(self, data_list[3])
 
     def get_time(self, data):
         dataList = data.data_list
@@ -44,4 +44,5 @@ class Data:
         r = re.findall(p, string)
         return r[0]
     
-    
+    def get_name(self):
+        return self.name
