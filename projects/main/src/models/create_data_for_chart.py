@@ -3,7 +3,7 @@ from models.InputData import InputData
 
 class CreateDataForChart:
     """データを変換して描画する"""
-    def __init__(self,data_rows_list:list,is_gfp_or_typ:str) -> None:
+    def __init__(self,data_rows_list:list, is_gfp_or_typ:str) -> None:
         # validate_file_path_list(data_rows_list)
         self.data_rows_list = data_rows_list
 

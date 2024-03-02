@@ -1,3 +1,4 @@
+from typing import List
 import numpy
 from matplotlib import pyplot
 
@@ -5,7 +6,8 @@ from models.InputData import InputData
 
 
 class FSECplot:
-    def __init__(self, is_gfp_or_typ:str, chart_title:str,is_zoom = False ) -> None:
+    def __init__(self,data_name_list: List[str], is_gfp_or_typ:str, chart_title:str,is_zoom = False ) -> None:
+        self.data_name_list =data_name_list
         self.is_gfp_or_typ = is_gfp_or_typ
         self.ylabel = self.get_ylabel_by_fluorescence(is_gfp_or_typ)
         self.y_font_size = 12
@@ -29,17 +31,15 @@ class FSECplot:
         for i in range(len(lists)):
             time = lists[i].get_time(lists[i])
             intensity = lists[i].get_intensity(lists[i])
-            print("図に表示する以下のファイルの名前を教えてください。")
-            print("what is the legend of ", lists[i].name)
 
-            # TODO 画面から上とるようにする
-            # legend = input("ENTER to default >> " + lists[i].default)
-            legend =  lists[i].default
+            legend =  self.data_name_list[i]
+
+            # もし画面からデータが入力されていない場合はデフォルトの値を使用する
             if legend == "":
                 legend = lists[i].default
             pyplot.plot(time, intensity, label=legend)
 
-        pyplot.legend()
+        pyplot.legend(prop={"family":"MS Gothic"})
         pyplot.subplots_adjust(left=0.145, right=0.98)
         pyplot.xlim([0, 10])
         pyplot.grid(which="both", linestyle="--")
