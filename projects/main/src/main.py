@@ -31,7 +31,6 @@ def _create_chart():
 @app.route("/api/get-default-data-name",methods=("GET", "POST"))
 def _get_default_data_name():
     path_list=request.args.getlist('pathList')
-    logging.info(path_list)
     path_name_list=get_default_data_name(path_list)
     result = path_and_name_list_2_json(path_name_list)
     logging.info(result)
