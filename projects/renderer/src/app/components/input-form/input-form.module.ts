@@ -13,7 +13,12 @@ import { FormTitleComponent } from './form-title/form-title.component'
     InputFormComponent,
     FormTitleComponent,
   ],
-  exports: [FileUploaderComponent, DropdownFormComponent, InputFormComponent],
+  exports: [
+    FileUploaderComponent,
+    DropdownFormComponent,
+    InputFormComponent,
+    FormTitleComponent,
+  ],
   imports: [CommonModule, SharedModule],
 })
 export class InputFormModule {}
