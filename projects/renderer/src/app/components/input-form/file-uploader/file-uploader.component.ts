@@ -1,5 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core'
-import { SendDataService } from '../../../service/send-data.service'
+import { Component, EventEmitter, Input, Output } from '@angular/core'
 
 @Component({
   selector: 'app-file-uploader',
@@ -8,14 +7,13 @@ import { SendDataService } from '../../../service/send-data.service'
 })
 export class FileUploaderComponent {
   @Output() filePathList = new EventEmitter<string[]>()
+  @Input() infoContent = ''
 
   /**ファイルが選択された際に選択されたファイルパスを取得する */
   async onFileSelected(event: any) {
     const files: File = event.target.files
     const filePathList = this.getFilePathListFromFileList(files)
     this.filePathList.emit(filePathList)
-    // const response = await this.api.sendSelectedFilePathList(filePathList)
-    // console.log(JSON.stringify(response))
   }
 
   getFilePathListFromFileList = (fileList: any) => {

@@ -8,6 +8,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core'
 export class InputFormComponent {
   @Input() title = ''
   @Input() placeholder = ''
+  @Input() infoContent = ''
   @Output() inputTitle = new EventEmitter<string>()
 
   onChangeInputString(event: any) {

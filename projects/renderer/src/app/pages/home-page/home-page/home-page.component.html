@@ -1,7 +1,10 @@
 <div class="max-w-sm mx-auto">
   <img src="data:image/png;base64,{{ logoImage }}" />
   <div class="mb-5">
-    <app-file-uploader (filePathList)="getFilePath($event)"></app-file-uploader>
+    <app-file-uploader
+      [infoContent]="'FSECのoutput fileを選択してください.'"
+      (filePathList)="getFilePath($event)"
+    ></app-file-uploader>
   </div>
   <!-- データ名の編集フォーム -->
   <form [formGroup]="dataNameList">
@@ -29,6 +32,7 @@
     <input-form
       [title]="'Title'"
       [placeholder]="'Input title'"
+      [infoContent]="'描画する際のタイトルを入力してください'"
       (inputTitle)="getInputTitle($event)"
     ></input-form>
   </div>
@@ -36,6 +40,7 @@
     <dropdown-form
       [title]="'Select Fluorescence'"
       [label]="'Select Fluorescence'"
+      [infoContent]="'蛍光の種類を選択してください'"
       (tags)="getTag($event)"
     ></dropdown-form>
   </div>
