@@ -1,16 +1,21 @@
 <div class="max-w-sm mx-auto">
-  <img src="data:image/png;base64,{{ logoImage }}" />
+  <app-header></app-header>
+  <!-- <img class="w-auto h-24" src="data:image/png;base64,{{ logoImage }}" /> -->
   <div class="mb-5">
-    <app-file-uploader (filePathList)="getFilePath($event)"></app-file-uploader>
+    <app-file-uploader
+      [infoContent]="
+        'FSECのoutput fileを選択してください。 ファイルは複数選択することができます。'
+      "
+      (filePathList)="getFilePath($event)"
+    ></app-file-uploader>
   </div>
   <!-- データ名の編集フォーム -->
+  <form-title
+    *ngIf="this.pathAndDefaultName.length > 0"
+    [title]="'Selected Data Name'"
+    [infoContent]="'グラフに表示するデータ名を変更することができます'"
+  ></form-title>
   <form [formGroup]="dataNameList">
-    <label
-      *ngIf="this.pathAndDefaultName.length > 0"
-      for="text"
-      class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-      >{{ 'Selected Data Name' }}</label
-    >
     <div formArrayName="dataArray">
       <div
         class="mb-5"
@@ -29,6 +34,7 @@
     <input-form
       [title]="'Title'"
       [placeholder]="'Input title'"
+      [infoContent]="'描画する際のタイトルを入力してください'"
       (inputTitle)="getInputTitle($event)"
     ></input-form>
   </div>
@@ -36,6 +42,7 @@
     <dropdown-form
       [title]="'Select Fluorescence'"
       [label]="'Select Fluorescence'"
+      [infoContent]="'蛍光の種類を選択してください'"
       (tags)="getTag($event)"
     ></dropdown-form>
   </div>

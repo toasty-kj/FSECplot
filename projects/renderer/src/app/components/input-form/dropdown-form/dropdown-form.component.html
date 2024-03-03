@@ -1,8 +1,4 @@
-<label
-  for="text"
-  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-  >{{ label }}</label
->
+<form-title [title]="label" [infoContent]="infoContent"></form-title>
 <select
   id="fluorescence"
   (click)="changeInputTag($event)"

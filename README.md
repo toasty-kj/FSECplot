@@ -2,6 +2,7 @@
 
 島津 Fluorescence-Detection Size-Exclusion Chromatographyのアウトプットデータ(テキストファイル)から
 作図を行うためのプログラムです。
+![FSEC plotter](https://github.com/toasty-kj/FSECplot/assets/74779681/29bba90b-cdfc-4e92-9445-103bb9625ae6)
 
 # すぐに実行するには
 
