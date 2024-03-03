@@ -1,7 +1,7 @@
-[Header]
+[Header]LC2_TEST-DATA
 Application Name	LabSolutions
 Version	5.110
-Data File Name	C:\LabSolutions\Data\Yone\FSEC-2022.11\17Nov22\LC2_CE-ZIP9 Elu. 5_17112022_7.lcd
+Data File Name	C:\LabSolutions\Data\Yone\FSEC-2022.11\17Nov22\LC2_TEST-DATA Elu. 5_17112022_7.lcd
 Output Date	2022/11/17
 Output Time	15:44:35
 
@@ -17,7 +17,7 @@ Operator Name	System Administrator
 Acquired	2022/11/17 14:03:52
 Sample Type	0:Unknown
 Level	0
-Sample Name	CE-ZIP9 Elu. 5
+Sample Name	TEST-DATA Elu. 5
 Sample ID	
 ISTD Amount1	1
 ISTD Amount2	1
@@ -57,7 +57,7 @@ Vial#	5
 Injection Volume	100
 
 [Original Files]
-Data File	C:\LabSolutions\Data\Yone\FSEC-2022.11\17Nov22\LC2_CE-ZIP9 Elu. 5_17112022_7.lcd
+Data File	C:\LabSolutions\Data\Yone\FSEC-2022.11\17Nov22\LC2_TEST-DATA Elu. 5_17112022_7.lcd
 Method File	C:\LabSolutions\Data\Yone\Methods\EnrichSEC650\EnrichSEC650-10min-16ml_EGFP-TRP-4MPa_Beetle.lcm
 Batch File	C:\LabSolutions\Data\Yone\FSEC-2022.11\17Nov22\BatchLC2.lcb
 Report Format File	C:\LabSolutions\System\DEFAULT.lsr
