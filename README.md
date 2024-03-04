@@ -1,7 +1,6 @@
 # FSEC plotter
 
 This is a program for plotting data from Shimadzu Fluorescence-Detection Size-Exclusion Chromatography output files (text files).
-
 島津 Fluorescence-Detection Size-Exclusion Chromatographyのアウトプットデータ(テキストファイル)から作図を行うためのプログラムです。
 ![FSEC plotter](https://github.com/toasty-kj/FSECplot/assets/74779681/29bba90b-cdfc-4e92-9445-103bb9625ae6)
 
@@ -10,28 +9,28 @@ This is a program for plotting data from Shimadzu Fluorescence-Detection Size-Ex
  すぐに実行するには
 
 Download the latest version installer (Setup.exe) from [here](https://github.com/toasty-kj/FSECplot/releases/latest).
-[こちら](https://github.com/toasty-kj/FSECplot/releases/latest)から最新バージョンのインストーラー(Setup.exe)をダウンロードする。
+<br>[こちら](https://github.com/toasty-kj/FSECplot/releases/latest)から最新バージョンのインストーラー(Setup.exe)をダウンロードする。
 ![image](https://github.com/toasty-kj/FSECplot/assets/74779681/6e952326-10e0-40ea-9bf9-2bb63b2d2d45)
 
 - Double-click the downloaded installer to run it
-  ダウンロードしたインストーラーをダブルクリックして実行する
+  <br>ダウンロードしたインストーラーをダブルクリックして実行する
 - Launch the program
-  プログラムを起動する
+  <br>プログラムを起動する
 
 # How to edit the program プログラムを編集するには
  
 The following steps are necessary when editing the FSEC plotter program. If no editing is required, you do not need to follow these steps.
-下記手順はFSEC plotterのプログラムを編集する際に必要な手順です。編集が必要な場合は実施不要です。
+<br>下記手順はFSEC plotterのプログラムを編集する際に必要な手順です。編集が必要な場合は実施不要です。
 
 ## Initial Stage 初期段階
    The steps are described assuming that the following has already been done. (If not done, please perform these steps first.)
-   下記についてはすでに行われている前提で手順を記載します。(されていない場合は先にこちらを実施してから後続の手順を行ってください)
+   <br>下記についてはすでに行われている前提で手順を記載します。(されていない場合は先にこちらを実施してから後続の手順を行ってください)
 
    - Creating a github account
-     githubのアカウント作成
+     <br>githubのアカウント作成
      
    - Installing git bash
-     git bashのインストール
+     <br>git bashのインストール
 
 ## Clone the git repository
 
