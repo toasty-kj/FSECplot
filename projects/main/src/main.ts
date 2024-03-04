@@ -91,7 +91,6 @@ app.whenReady().then(async () => {
 const server = 'https://update.electronjs.org'
 const feed = `${server}/toasty-kj/FSECplot/${process.platform}-${process.arch}/${app.getVersion()}`
 fs.writeFileSync('python-shell.log', feed)
-console.log(feed)
 
 if (app.isPackaged) {
   // パッケージされている（ローカル実行ではない）
@@ -101,16 +100,16 @@ if (app.isPackaged) {
   autoUpdater.checkForUpdates() // アップデートを確認する
 
   // アップデートのダウンロードが完了したとき
-  autoUpdater.on('update-downloaded', async () => {
-    const returnValue = await dialog.showMessageBox({
-      message: 'アップデートあり',
-      detail: '再起動してインストールできます。',
-      buttons: ['再起動', '後で'],
-    })
-    if (returnValue.response === 0) {
-      autoUpdater.quitAndInstall() // アプリを終了してインストール
-    }
-  })
+  // autoUpdater.on('update-downloaded', async () => {
+  //   const returnValue = await dialog.showMessageBox({
+  //     message: 'アップデートあり',
+  //     detail: '再起動してインストールできます。',
+  //     buttons: ['再起動', '後で'],
+  //   })
+  //   if (returnValue.response === 0) {
+  //     autoUpdater.quitAndInstall() // アプリを終了してインストール
+  //   }
+  // })
 
   // アップデートがあるとき
   autoUpdater.on('update-available', () => {
@@ -119,21 +118,13 @@ if (app.isPackaged) {
       detail: 'ダウンロード完了後に再度通知されます。',
       buttons: ['OK'],
     })
-    // TODO ダウンロードフラグを立てて、update完了したらフラグを折る。フラグが立っている間は画面はローディング画面を表示する
   })
+  // TODO ダウンロードフラグを立てて、update完了したらフラグを折る。フラグが立っている間は画面はローディング画面を表示する
 
   // アップデートがないとき
   autoUpdater.on('update-not-available', () => {
     dialog.showMessageBox({
-      message: 'アップデートはありません',
-      buttons: ['OK'],
-    })
-  })
-
-  // エラーが発生したとき
-  autoUpdater.on('error', () => {
-    dialog.showMessageBox({
-      message: 'アップデートエラーが起きました',
+      message: `Your app is up to date! Enjoy the latest features and improvements.🚀 current version ${app.getVersion()}`,
       buttons: ['OK'],
     })
   })
