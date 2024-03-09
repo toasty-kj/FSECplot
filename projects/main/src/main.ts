@@ -1,4 +1,4 @@
-import { app, BrowserWindow, autoUpdater, dialog } from 'electron'
+import { app, BrowserWindow, dialog, autoUpdater } from 'electron'
 import * as path from 'path'
 import * as fs from 'fs'
 import debug from 'electron-debug'
@@ -71,9 +71,7 @@ app.whenReady().then(async () => {
   //   .catch((err) => {
   //     fs.writeFileSync('python-shell-error.log', err.toString())
   //   })
-
   createWindow()
-
   app.on('activate', function () {
     if (BrowserWindow.getAllWindows().length === 0) createWindow()
   })
@@ -115,11 +113,10 @@ if (app.isPackaged) {
   autoUpdater.on('update-available', () => {
     dialog.showMessageBox({
       message: 'アップデートがあります',
-      detail: 'ダウンロード完了後に再度通知されます。',
+      detail: 'ダウンロードはバックグラウンドで実行されます',
       buttons: ['OK'],
     })
   })
-  // TODO ダウンロードフラグを立てて、update完了したらフラグを折る。フラグが立っている間は画面はローディング画面を表示する
 
   // アップデートがないとき
   autoUpdater.on('update-not-available', () => {
