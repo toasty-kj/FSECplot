@@ -145,7 +145,6 @@ const getDownloadingStatus = async (event: Event): Promise<boolean> => {
 
 const readUpdateHistory = async (event: Event): Promise<JSON> => {
   const data = fs.readFileSync(
-    // TODO 実行ファイルにした際に起動しない可能性が高い
     path.join(__dirname, 'data/update-history.json'),
     'utf-8',
   )

@@ -76,6 +76,9 @@ export class HomePageComponent {
 
   async _onSubmit() {
     // TODO 入力のバリデーションを作成する
+    const isError = this.validateOnSubmit()
+    if (isError) return
+
     const responce = await this.api.sendSelectedFilePathList(
       this.filePath,
       this.dataArray.value,
@@ -83,6 +86,34 @@ export class HomePageComponent {
       this.tag,
     )
     console.log(responce)
+  }
+
+  validateOnSubmit() {
+    let isError = false
+    if (this.filePath.length == 0) {
+      this.toastContent = {
+        type: toastType.Error,
+        message: 'Please input files',
+      }
+      isError = true
+    }
+
+    if (this.title == '') {
+      this.toastContent = {
+        type: toastType.Error,
+        message: 'Please input title',
+      }
+      isError = true
+    }
+
+    if (this.tag == '') {
+      this.toastContent = {
+        type: toastType.Error,
+        message: 'Please select fluorescence type for plotting',
+      }
+      isError = true
+    }
+    return isError
   }
 
   initFormArray() {
