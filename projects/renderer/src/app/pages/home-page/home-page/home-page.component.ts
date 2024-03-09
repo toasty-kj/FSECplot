@@ -1,11 +1,13 @@
-import { Component } from '@angular/core'
+import { Component, ViewChild } from '@angular/core'
+import { MessageService } from 'primeng/api'
 import { SendDataService } from '../../../service/send-data.service'
 import { logoBase64 } from './logo-image'
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms'
-
+import { toastType } from '../../../components/shared/toast/toast-type'
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
+  providers: [MessageService],
   styleUrls: ['./home-page.component.css'],
 })
 export class HomePageComponent {
@@ -15,6 +17,7 @@ export class HomePageComponent {
   filePath: string[] = []
   pathAndDefaultName: { path: string; name: string }[] = []
   dataNameList: FormGroup
+  toastType = toastType
 
   constructor(
     private api: SendDataService,

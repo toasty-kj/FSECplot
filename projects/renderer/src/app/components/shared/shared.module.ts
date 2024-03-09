@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { TooltipInfoComponent } from './tooltip-info/tooltip-info.component'
+import { ToastModule } from 'primeng/toast'
+import { ToastComponent } from './toast/toast.component'
 
 @NgModule({
-  declarations: [TooltipInfoComponent],
-  imports: [CommonModule],
-  exports: [TooltipInfoComponent],
+  declarations: [TooltipInfoComponent, ToastComponent],
+  imports: [CommonModule, ToastModule],
+  exports: [TooltipInfoComponent, ToastComponent],
 })
 export class SharedModule {}
