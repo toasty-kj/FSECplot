@@ -1,11 +1,16 @@
-import { Component } from '@angular/core'
+import { Component, ViewChild } from '@angular/core'
+import { MessageService } from 'primeng/api'
 import { SendDataService } from '../../../service/send-data.service'
 import { logoBase64 } from './logo-image'
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms'
-
+import {
+  ToastContent,
+  toastType,
+} from '../../../components/shared/toast/toast-type'
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
+  providers: [MessageService],
   styleUrls: ['./home-page.component.css'],
 })
 export class HomePageComponent {
@@ -15,6 +20,9 @@ export class HomePageComponent {
   filePath: string[] = []
   pathAndDefaultName: { path: string; name: string }[] = []
   dataNameList: FormGroup
+  currentVersion = ''
+  toastContent: ToastContent = { type: toastType.NotDefined, message: '' }
+  isDownloading = false
 
   constructor(
     private api: SendDataService,
@@ -23,6 +31,24 @@ export class HomePageComponent {
     this.dataNameList = this.fb.group({
       dataArray: this.fb.array([]),
     })
+    this.getCurrentVersion()
+    this.getDownloadingStatus()
+  }
+
+  async getCurrentVersion() {
+    this.currentVersion = await window.api.getVersion()
+    this.toastContent = {
+      type: toastType.Success,
+      message: `you are using version ${this.currentVersion}`,
+    }
+  }
+
+  async getDownloadingStatus() {
+    // 5秒おきにダウンロードのステータスをmainに確認する
+    setInterval(async () => {
+      this.isDownloading = await window.api.getDownloadingStatus()
+      console.log(this.isDownloading)
+    }, 5000)
   }
 
   getTag(newTag: string) {

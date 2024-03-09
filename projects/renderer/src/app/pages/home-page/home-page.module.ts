@@ -4,11 +4,13 @@ import { HomePageComponent } from './home-page/home-page.component'
 import { InputFormModule } from '../../components/input-form/input-form.module'
 import { ReactiveFormsModule } from '@angular/forms'
 import { HeaderModule } from '../../components/header/header.module'
+import { SharedModule } from '../../components/shared/shared.module'
 
 @NgModule({
   declarations: [HomePageComponent],
   imports: [
     CommonModule,
+    SharedModule,
     InputFormModule,
     ReactiveFormsModule,
     HeaderModule,
