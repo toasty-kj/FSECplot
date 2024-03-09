@@ -1,0 +1,32 @@
+[
+  {
+    "date": "4 Mar, 2024",
+    "title": "Release v0.2.3 quick bug fix ",
+    "content": "自動アップデートに関する、軽微な修正",
+    "author": "Koji Takaki"
+  },
+  {
+    "date": "3 Mar, 2024",
+    "title": "Release version 0.1.2",
+    "content": "画面から最新のリリースを確認できるようになりました！フォームに説明文を追加しました。",
+    "author": "Koji Takaki"
+  },
+  {
+    "date": "2 Mar, 2024",
+    "title": "Release v0.2.1 quick bug fix ",
+    "content": "最新バージョンがリリースされた際に自動で更新する機能のバグ修正",
+    "author": "Koji Takaki"
+  },
+  {
+    "date": "2 Mar, 2024",
+    "title": "Release version 0.2.0",
+    "content": "データ名を編集できるようになりました",
+    "author": "Koji Takaki"
+  },
+  {
+    "date": "23 Feb, 2023",
+    "title": "Release version 0.1.0",
+    "content": "画面からデータを選択して描画をできるようになりました。",
+    "author": "Koji Takai"
+  }
+]

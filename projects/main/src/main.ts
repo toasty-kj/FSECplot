@@ -25,7 +25,6 @@ function createWindow() {
       preload: path.join(__dirname, 'preload.js'),
     },
     width: 800,
-    //icon: path.join(__dirname, 'assets/icon/icon.ico'),
     icon: path.join(__dirname, '../assets/icon/icon.ico'),
   })
 
@@ -55,6 +54,7 @@ function createWindow() {
 app.whenReady().then(async () => {
   ipcMain.handle('getVersion', getVersion)
   ipcMain.handle('getDownloadingStatus', getDownloadingStatus)
+  ipcMain.handle('readUpdateHistory', readUpdateHistory)
   if (require('electron-squirrel-startup')) {
     console.log(`app.quit実行`)
     app.quit()
@@ -141,4 +141,13 @@ const getVersion = async (event: Event): Promise<string> => {
 
 const getDownloadingStatus = async (event: Event): Promise<boolean> => {
   return isDownloading
+}
+
+const readUpdateHistory = async (event: Event): Promise<JSON> => {
+  const data = fs.readFileSync(
+    // TODO 実行ファイルにした際に起動しない可能性が高い
+    'projects/main/data/update-history.json',
+    'utf-8',
+  )
+  return JSON.parse(data)
 }

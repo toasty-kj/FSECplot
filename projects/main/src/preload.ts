@@ -7,4 +7,7 @@ contextBridge.exposeInMainWorld('api', {
   getDownloadingStatus: (): Promise<boolean> => {
     return ipcRenderer.invoke('getDownloadingStatus')
   },
+  readUpdateHistory: (): Promise<JSON> => {
+    return ipcRenderer.invoke('readUpdateHistory')
+  },
 })

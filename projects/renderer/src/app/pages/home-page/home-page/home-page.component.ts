@@ -33,6 +33,7 @@ export class HomePageComponent {
     })
     this.getCurrentVersion()
     this.getDownloadingStatus()
+    this.fetchUpdateHistory()
   }
 
   async getCurrentVersion() {
@@ -49,6 +50,11 @@ export class HomePageComponent {
       this.isDownloading = await window.api.getDownloadingStatus()
       console.log(this.isDownloading)
     }, 5000)
+  }
+
+  async fetchUpdateHistory() {
+    const result = await window.api.readUpdateHistory()
+    console.log(result)
   }
 
   getTag(newTag: string) {
