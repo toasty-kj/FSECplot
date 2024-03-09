@@ -3,7 +3,7 @@
 >
   <ng-template let-message pTemplate="headless" let-closeFn="closeFn">
     <div
-      *ngIf="severity === toastType.Success"
+      *ngIf="toastContent.type === toastType.Success"
       class="1max-w-xs bg-white border border-gray-200 rounded-xl shadow-lg dark:bg-gray-800 dark:border-gray-700"
       style="flex: 1"
       role="alert"
@@ -26,7 +26,7 @@
           </div>
           <div class="ms-3">
             <p class="text-sm text-gray-700 dark:text-gray-400">
-              {{ detail }}
+              {{ toastContent.message }}
             </p>
           </div>
           <div class="absolute end-4">
@@ -57,7 +57,7 @@
     </div>
     <!-- error toast starts -->
     <div
-      *ngIf="severity === toastType.Error"
+      *ngIf="toastContent.type === toastType.Error"
       class="1max-w-xs bg-white border border-gray-200 rounded-xl shadow-lg dark:bg-gray-800 dark:border-gray-700"
       role="alert"
     >
@@ -79,7 +79,7 @@
           </div>
           <div class="ms-3">
             <p class="text-sm text-gray-700 dark:text-gray-400">
-              {{ detail }}
+              {{ toastContent.message }}
             </p>
           </div>
           <div class="absolute end-4">
@@ -110,7 +110,7 @@
     </div>
     <!-- warning toast starts -->
     <div
-      *ngIf="severity === toastType.Warn"
+      *ngIf="toastContent.type === toastType.Warn"
       class="max-w-xs bg-white border border-gray-200 rounded-xl shadow-lg dark:bg-gray-800 dark:border-gray-700"
       role="alert"
     >
@@ -132,7 +132,7 @@
           </div>
           <div class="ms-3">
             <p class="text-sm text-gray-700 dark:text-gray-400">
-              {{ detail }}
+              {{ toastContent.message }}
             </p>
           </div>
           <div class="absolute end-4">

@@ -1,6 +1,10 @@
 <div class="max-w-sm mx-auto">
   <app-header></app-header>
-  <toast [severity]="toastType.Error" [detail]="'成功しました'"></toast>
+  <loading-toast
+    [isLoading]="isDownloading"
+    [content]="'downloading new version...'"
+  ></loading-toast>
+  <toast [toastContent]="toastContent"></toast>
   <div class="mb-5">
     <app-file-uploader
       [infoContent]="

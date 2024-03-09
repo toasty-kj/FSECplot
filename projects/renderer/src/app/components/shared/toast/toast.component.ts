@@ -1,6 +1,6 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core'
 import { MessageService } from 'primeng/api'
-import { toastType } from './toast-type'
+import { ToastContent, toastType } from './toast-type'
 
 @Component({
   selector: 'toast',
@@ -10,14 +10,18 @@ import { toastType } from './toast-type'
 })
 export class ToastComponent implements OnChanges {
   constructor(private messageService: MessageService) {}
-  @Input() severity = toastType.NotDefined
-  @Input() detail = ''
+  @Input() toastContent: ToastContent = {
+    type: toastType.NotDefined,
+    message: '',
+  }
   toastType = toastType
 
   // 入力された内容が変更されたらtoastificationを表示する
   ngOnChanges(changes: SimpleChanges) {
-    if (!changes['detail']) return
-    const messageChange = changes['detail']
+    const messageChange = changes['toastContent']
+    if (!changes['toastContent'] || messageChange.currentValue.message == '')
+      return
+
     // 初期化の際は2秒待ってから表示する
     if (messageChange.previousValue === undefined) {
       setTimeout(() => {
@@ -30,8 +34,8 @@ export class ToastComponent implements OnChanges {
 
   show() {
     this.messageService.add({
-      severity: this.severity,
-      detail: this.detail,
+      severity: this.toastContent.type,
+      detail: this.toastContent.message,
     })
   }
 
