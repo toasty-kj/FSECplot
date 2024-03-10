@@ -1,4 +1,4 @@
-import { app, BrowserWindow, autoUpdater, dialog } from 'electron'
+import { app, BrowserWindow, dialog, autoUpdater, ipcMain } from 'electron'
 import * as path from 'path'
 import * as fs from 'fs'
 import debug from 'electron-debug'
@@ -9,6 +9,7 @@ import { spawn } from 'child_process'
 //Windowsにインストールした時用の処理
 //参考URL:https://www.electronforge.io/config/makers/squirrel.windows
 if (require('electron-squirrel-startup')) app.quit()
+let isDownloading = false
 
 //自動アップデートに対応
 require('update-electron-app')()
@@ -24,7 +25,6 @@ function createWindow() {
       preload: path.join(__dirname, 'preload.js'),
     },
     width: 800,
-    //icon: path.join(__dirname, 'assets/icon/icon.ico'),
     icon: path.join(__dirname, '../assets/icon/icon.ico'),
   })
 
@@ -52,6 +52,9 @@ function createWindow() {
 }
 
 app.whenReady().then(async () => {
+  ipcMain.handle('getVersion', getVersion)
+  ipcMain.handle('getDownloadingStatus', getDownloadingStatus)
+  ipcMain.handle('readUpdateHistory', readUpdateHistory)
   if (require('electron-squirrel-startup')) {
     console.log(`app.quit実行`)
     app.quit()
@@ -71,11 +74,11 @@ app.whenReady().then(async () => {
   //   .catch((err) => {
   //     fs.writeFileSync('python-shell-error.log', err.toString())
   //   })
-
   createWindow()
-
   app.on('activate', function () {
-    if (BrowserWindow.getAllWindows().length === 0) createWindow()
+    if (BrowserWindow.getAllWindows().length === 0) {
+      createWindow()
+    }
   })
 
   app.on('window-all-closed', () => {
@@ -100,32 +103,41 @@ if (app.isPackaged) {
   autoUpdater.checkForUpdates() // アップデートを確認する
 
   // アップデートのダウンロードが完了したとき
-  // autoUpdater.on('update-downloaded', async () => {
-  //   const returnValue = await dialog.showMessageBox({
-  //     message: 'アップデートあり',
-  //     detail: '再起動してインストールできます。',
-  //     buttons: ['再起動', '後で'],
-  //   })
-  //   if (returnValue.response === 0) {
-  //     autoUpdater.quitAndInstall() // アプリを終了してインストール
-  //   }
-  // })
+  autoUpdater.on('update-downloaded', async () => {
+    isDownloading = false
+  })
 
   // アップデートがあるとき
   autoUpdater.on('update-available', () => {
     dialog.showMessageBox({
       message: 'アップデートがあります',
-      detail: 'ダウンロード完了後に再度通知されます。',
+      detail: 'ダウンロードはバックグラウンドで実行されます',
       buttons: ['OK'],
     })
+    isDownloading = true
   })
-  // TODO ダウンロードフラグを立てて、update完了したらフラグを折る。フラグが立っている間は画面はローディング画面を表示する
 
   // アップデートがないとき
   autoUpdater.on('update-not-available', () => {
     dialog.showMessageBox({
-      message: `Your app is up to date! Enjoy the latest features and improvements.🚀 current version ${app.getVersion()}`,
+      message: `Your app is up to date! Enjoy the latest features and improvements.🚀 
+      current version ${app.getVersion()}`,
       buttons: ['OK'],
     })
   })
+}
+const getVersion = async (event: Event): Promise<string> => {
+  return app.getVersion()
+}
+
+const getDownloadingStatus = async (event: Event): Promise<boolean> => {
+  return isDownloading
+}
+
+const readUpdateHistory = async (event: Event): Promise<JSON> => {
+  const data = fs.readFileSync(
+    path.join(__dirname, 'data/update-history.json'),
+    'utf-8',
+  )
+  return JSON.parse(data)
 }

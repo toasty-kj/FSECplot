@@ -1,9 +1,11 @@
-export interface MyAPI {
-  loadUsers: () => Promise<{ userId: number; userName: string }[]>
+export interface API {
+  getVersion: () => Promise<string>
+  getDownloadingStatus: () => Promise<boolean>
+  readUpdateHistory: () => Promise<JSON>
 }
 
 declare global {
   interface Window {
-    myAPI: MyAPI
+    api: API
   }
 }

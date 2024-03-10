@@ -1,40 +1,14 @@
 <!-- Timeline -->
 <div class="overflow-y-auto max-h-60">
-  <!-- TODO リリース情報をJSONに書いてそれを読み込んで表示するようにする -->
-  <time-line-time-header [timeStr]="'4 Mar, 2024'"></time-line-time-header>
-  <time-line-item
-    [title]="'Release v0.2.3 quick bug fix 🐞'"
-    [content]="'自動アップデートに関する、軽微な修正'"
-    [auther]="'Koji Takaki'"
-  ></time-line-item>
-  <time-line-time-header [timeStr]="'3 Mar, 2024'"></time-line-time-header>
-  <time-line-item
-    [title]="'Release version 0.1.2🚀'"
-    [content]="
-      '画面から最新のリリースを確認できるようになりました！フォームに説明文を追加しました。'
-    "
-    [auther]="'Koji Takaki'"
-  ></time-line-item>
-
-  <time-line-time-header [timeStr]="'2 Mar, 2024'"></time-line-time-header>
-
-  <time-line-item
-    [title]="'Release v0.2.1 quick bug fix 🐞'"
-    [content]="'最新バージョンがリリースされた際に自動で更新する機能のバグ修正'"
-    [auther]="'Koji Takaki'"
-  ></time-line-item>
-  <time-line-item
-    [title]="'Release version 0.2.0🚀'"
-    [content]="'データ名を編集できるようになりました📝'"
-    [auther]="'Koji Takaki'"
-  ></time-line-item>
-
-  <time-line-time-header [timeStr]="'23 Feb, 2023'"></time-line-time-header>
-
-  <time-line-item
-    [title]="'Release version 0.1.0🚀'"
-    [content]="'画面からデータを選択して描画をできるようになりました。'"
-    [auther]="'Koji Takai'"
-  ></time-line-item>
+  <div *ngFor="let item of updateHistory">
+    <time-line-time-header [timeStr]="item.date"></time-line-time-header>
+    <div *ngFor="let h of item.history">
+      <time-line-item
+        [title]="h.title"
+        [content]="h.content"
+        [auther]="h.author"
+      ></time-line-item>
+    </div>
+  </div>
 </div>
 <!-- End Timeline -->
