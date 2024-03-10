@@ -105,15 +105,6 @@ if (app.isPackaged) {
   // アップデートのダウンロードが完了したとき
   autoUpdater.on('update-downloaded', async () => {
     isDownloading = false
-    // FIXME v0.2.3以降で自動ダウンロードが終了した際にその旨のメッセージが表示されたら下記コメントアウトを削除する
-    // const returnValue = await dialog.showMessageBox({
-    //   message: 'アップデートあり',
-    //   detail: '再起動してインストールできます。',
-    //   buttons: ['再起動', '後で'],
-    // })
-    // if (returnValue.response === 0) {
-    //   autoUpdater.quitAndInstall() // アプリを終了してインストール
-    // }
   })
 
   // アップデートがあるとき
