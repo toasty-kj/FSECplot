@@ -2,13 +2,14 @@
 *test.py
 # Compiled output
 /dist
+/build
 /tmp
 /out-tsc
 /bazel-out
 /src/__pycache__
 .venv/*
 *.pyc
-
+main.spec
 # log
 /project/main/src/logging/*.log
 *.log

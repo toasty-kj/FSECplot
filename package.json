@@ -5,7 +5,7 @@
   "author": "koji takaki",
   "description": "plotting app to create plot with output by Shimazu- Fluorescence-Detection Size-Exclusion Chromatography",
   "scripts": {
-    "build:all": "rm -rf dist && rm -rf out && pyinstaller.exe projects/main/src/main.py && npm run build",
+    "build:all": "rm -rf dist && rm -rf out && pyinstaller.exe projects/main/src/main.py &&  cp -r projects/main/data dist && npm run build",
     "build:el": "tsc --build projects/main/tsconfig.json",
     "build:ng": "ng build --configuration production --base-href ./",
     "build": "npm-run-all -s build:el build:ng",

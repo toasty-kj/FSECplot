@@ -25,7 +25,6 @@ function createWindow() {
       preload: path.join(__dirname, 'preload.js'),
     },
     width: 800,
-    //icon: path.join(__dirname, 'assets/icon/icon.ico'),
     icon: path.join(__dirname, '../assets/icon/icon.ico'),
   })
 
@@ -55,6 +54,7 @@ function createWindow() {
 app.whenReady().then(async () => {
   ipcMain.handle('getVersion', getVersion)
   ipcMain.handle('getDownloadingStatus', getDownloadingStatus)
+  ipcMain.handle('readUpdateHistory', readUpdateHistory)
   if (require('electron-squirrel-startup')) {
     console.log(`app.quit実行`)
     app.quit()
@@ -105,15 +105,6 @@ if (app.isPackaged) {
   // アップデートのダウンロードが完了したとき
   autoUpdater.on('update-downloaded', async () => {
     isDownloading = false
-    // FIXME v0.2.3以降で自動ダウンロードが終了した際にその旨のメッセージが表示されたら下記コメントアウトを削除する
-    // const returnValue = await dialog.showMessageBox({
-    //   message: 'アップデートあり',
-    //   detail: '再起動してインストールできます。',
-    //   buttons: ['再起動', '後で'],
-    // })
-    // if (returnValue.response === 0) {
-    //   autoUpdater.quitAndInstall() // アプリを終了してインストール
-    // }
   })
 
   // アップデートがあるとき
@@ -141,4 +132,12 @@ const getVersion = async (event: Event): Promise<string> => {
 
 const getDownloadingStatus = async (event: Event): Promise<boolean> => {
   return isDownloading
+}
+
+const readUpdateHistory = async (event: Event): Promise<JSON> => {
+  const data = fs.readFileSync(
+    path.join(__dirname, 'data/update-history.json'),
+    'utf-8',
+  )
+  return JSON.parse(data)
 }
